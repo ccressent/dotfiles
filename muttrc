@@ -12,5 +12,5 @@ set sort_aux="date"
 # GPG signature verification support
 set pgp_verify_sig=yes
 set pgp_import_command="gpg --no-verbose --import -v %f"
-set pgp_verify_key_command="gpg --no-verbise --batch --fingerprint --check-sigs %r"
+set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
 
