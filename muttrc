@@ -17,8 +17,8 @@ set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs 
 # Solarized color scheme
 # See: http://ethanschoonover.com/solarized
 # Uncomment the colorscheme you want to use
-source ./mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
-#source ./mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
-#source ./mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
-#source ./mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+source ~/.dotfiles/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+#source ~/.dotfiles/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+#source ~/.dotfiles/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
+#source ~/.dotfiles/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
 
