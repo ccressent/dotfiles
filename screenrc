@@ -1,0 +1,26 @@
+startup_message off
+autodetach on
+vbell off
+
+shell -$SHELL
+
+altscreen on
+defscrollback 1024
+
+backtick 0  0  0 whoami
+backtick 1 60 60 $HOME/bin/freemem.sh
+backtick 2 60 60 $HOME/bin/freeswap.sh
+
+caption always "%{= wk} %1`MB %= %l %=  %2`MB"
+
+hardstatus off
+hardstatus alwayslastline
+hardstatus string "%{+b gw} %-w %{= Bw}%n %t %{-} %+w  %= %0` @ %H %= %D,%C:%s%a"
+#hardstatus string "%{+b wk} %-w%{+b wk} %n %t %{-}%+w %41=%H %-= %= %D,%c:%s "
+#hardstatus string "%{= Wk}%-w%{= Bw}%n %t%{-}%+w %-="
+
+screen -t MUTT		0 tsocks mutt
+screen -t ROOT		1 su -
+screen -t shell		2
+select 2
+

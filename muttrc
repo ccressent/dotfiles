@@ -1,0 +1,16 @@
+set folder="imaps://imap.gmail.com:993"
+set imap_user="cyril.cressent@gmail.com"
+
+set spoolfile="+INBOX"
+set postponed="+[Gmail]/Drafts"
+
+set smtp_url="smtp://cyril.cressent@smtp.gmail.com:587"
+
+set sort="threads"
+set sort_aux="date"
+
+# GPG signature verification support
+set pgp_verify_sig=yes
+set pgp_import_command="gpg --no-verbose --import -v %f"
+set pgp_verify_key_command="gpg --no-verbise --batch --fingerprint --check-sigs %r"
+
