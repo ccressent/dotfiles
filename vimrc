@@ -43,8 +43,9 @@ set tags=./tags;
 
 
 " Colors and fonts
-syntax on				" Enable syntax highlighting
-colorscheme desert
+syntax enable				" Enable syntax highlighting
+set background=dark
+colorscheme solarized
 
 
 " File backups
