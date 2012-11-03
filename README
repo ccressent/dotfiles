@@ -1,5 +1,10 @@
 Cyril's dotfiles
 ----------------
 
+cd ~
+git clone https://ccressent@bitbucket.org/ccressent/dotfiles.git .dotfiles
+ln -s .dotfiles/vimrc .vimrc
+...
+
 I could write a script to automatically create symlinks to the configuration files in my ~
 
