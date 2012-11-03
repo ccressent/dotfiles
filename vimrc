@@ -1,3 +1,8 @@
+" Load Pathogen
+source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags()
+
 " General
 set nocompatible		" Use vim default settings
 set history=300			" Number of line of history vim should remember
