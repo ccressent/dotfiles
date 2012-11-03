@@ -1,5 +1,5 @@
-[submodule "mutt-colors-solarized"]
-	path = mutt-colors-solarized
+[submodule "mutt/mutt-colors-solarized"]
+	path = mutt/mutt-colors-solarized
 	url = git://github.com/altercation/mutt-colors-solarized.git
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
