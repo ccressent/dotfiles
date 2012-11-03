@@ -1,9 +1,9 @@
-[submodule "mutt/mutt-colors-solarized"]
-	path = mutt/mutt-colors-solarized
-	url = git://github.com/altercation/mutt-colors-solarized.git
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "mutt/mutt-colors-solarized"]
+	path = mutt/mutt-colors-solarized
+	url = git://github.com/altercation/mutt-colors-solarized.git
