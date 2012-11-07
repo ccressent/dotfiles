@@ -1,18 +1,32 @@
-set folder="imaps://imap.gmail.com:993"
-set imap_user="cyril.cressent@gmail.com"
+source ~/.dotfiles/mutt/mutt-keybinds
 
+set realname = "Cyril Cressent"
+set from = "cyril@cressent.org"
+set use_from = yes
+
+set imap_user="cyril.cressent@gmail.com"
+set smtp_url="smtp://cyril.cressent@smtp.gmail.com:587"
+
+set copy = no   # Do not write a copy of sent messages on the local machine
+
+set folder="imaps://imap.gmail.com:993"
 set spoolfile="+INBOX"
 set postponed="+[Gmail]/Drafts"
 
-set smtp_url="smtp://cyril.cressent@smtp.gmail.com:587"
-
 set sort="threads"
 set sort_aux="date"
+
+set mail_check = 60     # Check for new mail every minute
+set timeout    = 15     # User input timeout 
 
 # GPG signature verification support
 set pgp_verify_sig=yes
 set pgp_import_command="gpg --no-verbose --import -v %f"
 set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+
+# Pager options
+set pager_context = 5       # Keep 5 lines of previous page when scrolling
+set pager_stop    = yes     # Do not move to next message if <next-page> is called at the end of the current message
 
 # Solarized color scheme
 # See: http://ethanschoonover.com/solarized

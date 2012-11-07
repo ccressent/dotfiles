@@ -1,0 +1,4 @@
+# Pager
+bind pager j next-line
+bind pager k previous-line
+
