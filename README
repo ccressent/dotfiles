@@ -8,4 +8,6 @@ ln -s .dotfiles/vimrc .vimrc
 
 + I could write a script to automatically create symlinks to the configuration files in my ~
 + It would be nice to remove the hardcoded path for the Solarized color scheme in muttrc
++ I should setup headers/bodies cache for mutt
++ There is something called OfflineImap that I should have a look at
 
