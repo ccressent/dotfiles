@@ -16,6 +16,10 @@ set postponed="+[Gmail]/Drafts"
 
 mailboxes "+INBOX" "+NetBSD ML" "=Debian ML"
 
+# Local caches to speed things up
+set header_cache     = ~/.mutt_cache/headers 
+set message_cachedir = ~/.mutt_cache/messages
+
 set sort="threads"
 set sort_aux="date"
 
