@@ -2,3 +2,10 @@
 bind pager j next-line
 bind pager k previous-line
 
+# b to toggle the sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+
+# Remap bounce-message to B
+bind index B bounce-message
+

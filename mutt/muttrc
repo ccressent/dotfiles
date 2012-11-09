@@ -1,3 +1,4 @@
+source ~/.dotfiles/mutt/mutt-sidebar
 source ~/.dotfiles/mutt/mutt-keybinds
 
 set realname = "Cyril Cressent"
@@ -12,6 +13,8 @@ set copy = no   # Do not write a copy of sent messages on the local machine
 set folder="imaps://imap.gmail.com:993"
 set spoolfile="+INBOX"
 set postponed="+[Gmail]/Drafts"
+
+mailboxes "+INBOX" "+NetBSD ML" "=Debian ML"
 
 set sort="threads"
 set sort_aux="date"
