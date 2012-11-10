@@ -1,6 +1,9 @@
 # Debian
 subscribe debian-devel-announce@lists.debian.org
 
+# Linux kernel mentors
+subscribe kernel-mentors
+
 # NetBSD
 subscribe netbsd-users@netbsd.org
 
