@@ -7,3 +7,6 @@
 [submodule "mutt/mutt-colors-solarized"]
 	path = mutt/mutt-colors-solarized
 	url = git://github.com/altercation/mutt-colors-solarized.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = git://github.com/ervandew/supertab.git
