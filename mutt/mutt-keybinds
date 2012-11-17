@@ -2,6 +2,10 @@
 bind pager j next-line
 bind pager k previous-line
 
+# d exits the pager (go back to index) then delete.
+# That avoids automatically moving to the next message when deleting from the pager
+folder-hook . 'macro pager d "<exit><delete-message>" "Delete the message"'
+
 # b to toggle the sidebar visibility
 macro index b '<enter-command>toggle sidebar_visible<enter>'
 macro pager b '<enter-command>toggle sidebar_visible<enter>'
