@@ -34,8 +34,10 @@ set pgp_import_command="gpg --no-verbose --import -v %f"
 set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
 
 # Pager options
+set tilde                   # Pad the end of a message with tildes, like vim does with the end of a file
 set pager_context = 5       # Keep 5 lines of previous page when scrolling
 set pager_stop    = yes     # Do not move to next message if <next-page> is called at the end of the current message
+set pager_index_lines = 6   # Display 4 lines of index in pager mode
 
 # Solarized color scheme
 # See: http://ethanschoonover.com/solarized
