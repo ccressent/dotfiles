@@ -38,6 +38,10 @@ set t_vb=
 set dictionary=/usr/share/dict/words
 
 
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
+
+
 " Tags
 set tags=./tags;
 
