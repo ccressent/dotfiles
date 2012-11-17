@@ -7,8 +7,8 @@ bind pager k previous-line
 folder-hook . 'macro pager d "<exit><delete-message>" "Delete the message"'
 
 # b to toggle the sidebar visibility
-macro index b '<enter-command>toggle sidebar_visible<enter>'
-macro pager b '<enter-command>toggle sidebar_visible<enter>'
+macro index b '<enter-command>toggle sidebar_visible<enter> "Toggle sidebar visibility"'
+macro pager b '<enter-command>toggle sidebar_visible<enter> "Toggel sidebar visibility"'
 
 # Remap bounce-message to B
 bind index B bounce-message
