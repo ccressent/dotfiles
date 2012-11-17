@@ -13,3 +13,8 @@ macro pager b '<enter-command>toggle sidebar_visible<enter> "Toggel sidebar visi
 # Remap bounce-message to B
 bind index B bounce-message
 
+# Gmail style shortcuts
+macro index,pager gi "<change-folder>=INBOX<enter>"             "Go to inbox"
+macro index,pager ga "<change-folder>=[Gmail]/All<tab><enter>"  "Go to all mail"
+macro index,pager gl "<change-folder>?"                         "Go to 'Label'"
+

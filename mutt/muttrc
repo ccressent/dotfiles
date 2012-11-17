@@ -1,6 +1,6 @@
-source ~/.mutt/mutt-keybinds
 source ~/.mutt/mutt-ml
 source ~/.mutt/mutt-sidebar
+source ~/.mutt/mutt-keybinds
 
 set realname = "Cyril Cressent"
 set from = "cyril@cressent.org"
