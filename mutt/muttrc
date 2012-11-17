@@ -11,9 +11,9 @@ set smtp_url="smtp://cyril.cressent@smtp.gmail.com:587"
 
 set copy = no   # Do not write a copy of sent messages on the local machine
 
-set folder="imaps://imap.gmail.com:993"
-set spoolfile="+INBOX"
-set postponed="+[Gmail]/Drafts"
+set folder    = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
 
 mailboxes "+Inbox" "+FollowUp" "+Hold"
 mailboxes "+ML" "+ML/NetBSD" "+ML/Debian"
