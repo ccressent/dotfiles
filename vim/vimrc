@@ -59,6 +59,7 @@ set noswapfile
 
 
 " Keymaps
+map <F8> :TagbarToggle<CR>
 map <F9> :make<CR>
 
 
