@@ -36,6 +36,8 @@ set noerrorbells        " No sound on errors
 set novisualbell        " No flash on errors
 set t_vb=
 
+" Spellchecking
+set spelllang=en
 set dictionary=/usr/share/dict/words
 
 
