@@ -3,9 +3,9 @@ Cyril's dotfiles
 
 cd ~
 git clone https://ccressent@bitbucket.org/ccressent/dotfiles.git .dotfiles
+# init/update all the git submodules
 ln -s .dotfiles/vimrc .vimrc
 ...
 
 + I could write a script to automatically create symlinks to the configuration files in my ~
-+ There is something called OfflineImap that I should have a look at
 

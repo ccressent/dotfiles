@@ -1,0 +1,24 @@
+[general]
+accounts = Gmail
+ui = ttyui
+pythonfile = ~/.mutt/offlineimap.py
+
+[Account Gmail]
+localrepository  = Gmail-local
+remoterepository = Gmail-remote
+
+[Repository Gmail-local]
+type = Maildir
+localfolders = ~/mail
+nametrans = nametrans_local
+
+[Repository Gmail-remote]
+type = Gmail
+cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
+remoteuser = cyril.cressent@gmail.com
+remotepasseval = get_keychain_passwd('cyril.cressent', 'imap.gmail.com')
+nametrans = nametrans_remote
+
+# Filter archive for now so that I don't have too much to sync for testing purpose
+folderfilter = lambda folder: folder not in '[Gmail]/All Mail'
+
