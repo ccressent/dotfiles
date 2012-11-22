@@ -8,9 +8,11 @@ mapping = { 'INBOX':              'inbox'
           , '[Gmail]/Spam':       'spam'
           , '[Gmail]/Starred':    'starred'
           , '[Gmail]/Trash':      'trash'
+          , 'ML/Debian':          'ml.debian'
+          , 'ML/NetBSD':          'ml.netbsd'
           }
 
-r_mapping = { val: key for val, key in mapping.items() }
+r_mapping = { val: key for key, val in mapping.items() }
 
 
 def nametrans_local(folder):
