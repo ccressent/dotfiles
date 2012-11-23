@@ -2,42 +2,47 @@ source ~/.mutt/mutt-ml
 source ~/.mutt/mutt-sidebar
 source ~/.mutt/mutt-keybinds
 
-set realname = "Cyril Cressent"
-set from = "cyril@cressent.org"
-set use_from = yes
+set folder    = ~/mail
+set spoolfile = "+inbox"
+set postponed = "+drafts"
 
-set imap_user="cyril.cressent@gmail.com"
-set smtp_url="smtp://cyril.cressent@smtp.gmail.com:587"
-
-set copy = no   # Do not write a copy of sent messages on the local machine
-
-set folder    = "imaps://imap.gmail.com:993"
-set spoolfile = "+INBOX"
-set postponed = "+[Gmail]/Drafts"
-
-mailboxes "+Inbox" "+FollowUp" "+Hold"
-mailboxes "+ML" "+ML/NetBSD" "+ML/Debian"
-
-# Local caches to speed things up
 set header_cache     = ~/.mutt_cache/headers 
 set message_cachedir = ~/.mutt_cache/messages
-
-set sort="threads"
-set sort_aux="date"
 
 set mail_check = 60     # Check for new mail every minute
 set timeout    = 15     # User input timeout 
 
-# GPG signature verification support
+mailboxes +inbox        \
+          +starred      \
+          +drafts       \
+          +archive      \
+          +sent         \
+          +spam         \
+          +trash        \
+          +ml.debian    \
+          +ml.netbsd    \
+
+set from     = "cyril@cressent.org"
+set realname = "Cyril Cressent"
+set use_from = yes
+
+set smtp_url = "smtp://cyril.cressent@smtp.gmail.com:587"
+set copy     = no   # Do not write a copy of sent messages on the local machine
+
+set sort     = "threads"
+set sort_aux = "date"
+
+set tilde                       # Pad the end of a message with tildes, like vim does with the end of a file
+set pager_context     = 5       # Keep 5 lines of previous page when scrolling
+set pager_stop        = yes     # Do not move to next message if <next-page> is called at the end of the current message
+set pager_index_lines = 6       # Display lines of index in pager mode
+
 set pgp_verify_sig=yes
 set pgp_import_command="gpg --no-verbose --import -v %f"
 set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
 
-# Pager options
-set tilde                   # Pad the end of a message with tildes, like vim does with the end of a file
-set pager_context = 5       # Keep 5 lines of previous page when scrolling
-set pager_stop    = yes     # Do not move to next message if <next-page> is called at the end of the current message
-set pager_index_lines = 6   # Display 4 lines of index in pager mode
+# Collapse all threads in ML folders
+folder-hook (ml.*) "exec collapse-all"
 
 # Solarized color scheme
 # See: http://ethanschoonover.com/solarized

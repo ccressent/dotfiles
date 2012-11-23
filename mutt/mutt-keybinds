@@ -1,6 +1,10 @@
-# Pager
-bind pager j next-line
-bind pager k previous-line
+bind index gg   first-entry
+bind index G    last-entry
+
+bind pager j    next-line
+bind pager k    previous-line
+bind pager gg   top
+bind pager G    bottom
 
 # d exits the pager (go back to index) then delete.
 # That avoids automatically moving to the next message when deleting from the pager
@@ -14,7 +18,7 @@ macro pager b '<enter-command>toggle sidebar_visible<enter> "Toggel sidebar visi
 bind index B bounce-message
 
 # Gmail style shortcuts
-macro index,pager gi "<change-folder>=INBOX<enter>"             "Go to inbox"
-macro index,pager ga "<change-folder>=[Gmail]/All<tab><enter>"  "Go to all mail"
-macro index,pager gl "<change-folder>?"                         "Go to 'Label'"
+macro index,pager gi "<change-folder>+inbox<enter>"   "Go to inbox"
+macro index,pager ga "<change-folder>+archive<enter>" "Go to archive"
+macro index,pager gl "<change-folder>?"               "Go to 'Label'"
 
