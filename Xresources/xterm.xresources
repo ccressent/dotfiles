@@ -1,0 +1,11 @@
+xterm*faceName: Dejavu Sans Mono
+xterm*faceSize: 14
+
+! Number of lines of scrollback
+xterm*savelines: 4096
+
+! Double click selects whole URL
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! Stop output to terminal from jumping down to bottom
+xterm*scrollTtyOutput: false
