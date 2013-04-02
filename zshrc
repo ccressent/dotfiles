@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export TZ=GMT
+export TZ=Europe/Dublin
 export PATH=$PATH:/$HOME/bin
 export PAGER='less'
 export EDITOR='vim'
