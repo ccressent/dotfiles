@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 export TZ=Europe/Dublin
-export PATH=$PATH:/$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/.cabal/bin
 export PAGER='less'
 export EDITOR='vim'
 
