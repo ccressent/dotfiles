@@ -19,3 +19,15 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/neocomplcache"]
+	path = vim/bundle/neocomplcache
+	url = git://github.com/Shougo/neocomplcache.git
+[submodule "vim/bundle/vimproc"]
+	path = vim/bundle/vimproc
+	url = git://github.com/Shougo/vimproc.git
+[submodule "vim/bundle/ghcmod-vim"]
+	path = vim/bundle/ghcmod-vim
+	url = git://github.com/eagletmt/ghcmod-vim.git
+[submodule "vim/bundle/neco-ghc"]
+	path = vim/bundle/neco-ghc
+	url = git://github.com/ujihisa/neco-ghc.git
