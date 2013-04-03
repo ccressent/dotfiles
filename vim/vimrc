@@ -1,3 +1,6 @@
+" Add locations needed by some plugins to $PATH
+let $PATH = $PATH . ':' . expand("~/.cabal/bin")
+
 " Load Pathogen
 " To disable a plugin add it's bundle name to the following list
 let g:pathogen_disabled = ['supertab']
