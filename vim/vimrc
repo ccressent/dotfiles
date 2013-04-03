@@ -1,4 +1,6 @@
 " Load Pathogen
+" To disable a plugin add it's bundle name to the following list
+let g:pathogen_disabled = ['supertab']
 source ~/.vim/bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
@@ -71,4 +73,3 @@ if has("autocmd")
     autocmd FileType c,cpp,sh,pl set smartindent
     autocmd FileType c,cpp,sh,pl set cindent
 endif
-
