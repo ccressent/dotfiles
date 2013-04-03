@@ -50,6 +50,14 @@ set dictionary=/usr/share/dict/words
 " Show detailed information (type) about symbols
 let g:necoghc_enable_detailed_browse = 1
 
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+
+" <Tab> to select a completion
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
 
