@@ -46,6 +46,10 @@ set spelllang=en
 set dictionary=/usr/share/dict/words
 
 
+" neco-ghc
+" Show detailed information (type) about symbols
+let g:necoghc_enable_detailed_browse = 1
+
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
 
