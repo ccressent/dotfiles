@@ -1,0 +1,8 @@
+:{
+let ghciEscapeString s = "'" ++
+                         concatMap (\x -> if x == '\'' then "'\"'\"'" else [x]) s
+                         ++ "'"
+:}
+
+:def! search return . (":! hoogle --color --count=20 " ++) . ghciEscapeString
+:def! doc    return . (":! hoogle --info " ++) . ghciEscapeString
