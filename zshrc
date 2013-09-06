@@ -6,6 +6,7 @@ export PAGER='less'
 export EDITOR='vim'
 
 export http_proxy=http://proxy.ir.intel.com:911
+export https_proxy=$http_proxy
 export ftp_proxy=$http_proxy
 
 setopt autocd
