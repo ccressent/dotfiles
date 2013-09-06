@@ -3,7 +3,7 @@ let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
 " Load Pathogen
 " To disable a plugin add it's bundle name to the following list
-let g:pathogen_disabled = ['supertab']
+let g:pathogen_disabled = ['']
 source ~/.vim/bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
@@ -52,7 +52,7 @@ let g:necoghc_enable_detailed_browse = 1
 
 
 " neocomplcache
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 0
 
 " <Tab> to select a completion
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -60,6 +60,7 @@ inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 
 " Tags
@@ -87,6 +88,9 @@ if has("autocmd")
     autocmd FileType c,cpp,sh,pl set autoindent
     autocmd FileType c,cpp,sh,pl set smartindent
     autocmd FileType c,cpp,sh,pl set cindent
+
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType python set completeopt=menuone,longest,preview
 
     " For all text files set 'textwidth' to 78 characters
     autocmd FileType text setlocal textwidth=78
