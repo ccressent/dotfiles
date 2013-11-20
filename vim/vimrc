@@ -89,6 +89,8 @@ if has("autocmd")
     autocmd FileType c,cpp,sh,pl set smartindent
     autocmd FileType c,cpp,sh,pl set cindent
 
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+
     autocmd FileType python set omnifunc=pythoncomplete#Complete
     autocmd FileType python set completeopt=menuone,longest,preview
 
