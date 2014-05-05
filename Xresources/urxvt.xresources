@@ -1,0 +1,18 @@
+URxvt.font: xft:Dejavu Sans Mono:size=13
+URxvt.letterSpace: -1
+
+! Disable the scrollbar
+URxvt.scrollBar: false
+
+! Stop output to terminal from jumping down to bottom
+URxvt*scrollTtyOutput: false
+
+! Clickable URL support
+! Note that urlLauncher is called url-launcher in newer version of urxvt
+URxvt.perl-ext-common: default,matcher
+URxvt.matcher.button: 1
+URxvt.urlLauncher: /usr/bin/firefox -new-tab
+
+! This fixes bold colors
+! http://superuser.com/questions/512138/
+URxvt.intensityStyles: false
