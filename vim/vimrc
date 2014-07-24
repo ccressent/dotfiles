@@ -1,21 +1,27 @@
 " Add locations needed by some plugins to $PATH
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
-" Load Pathogen
-" To disable a plugin add it's bundle name to the following list
-let g:pathogen_disabled = ['']
-source ~/.vim/bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+set nocompatible        " Use vim default settings
+filetype off            " Required by Vundle
+
+" Load Vundle
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+
+" Let Vundle manage itself ; required
+Plugin 'gmarik/vundle'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'pangloss/vim-javascript'
+
+call vundle#end()
+filetype plugin indent on
 
 " General
-set nocompatible        " Use vim default settings
 set history=300         " Number of line of history vim should remember
 set autoread            " Automatically reread a file if it has changed
-
-filetype on             " Automatic filetype detection
-filetype plugin on      " Enable filetype specific plugins
-filetype indent on      " Enable filetype specific indentation
 
 " Press space to clear search highlighting and any message already displayed
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
@@ -48,19 +54,19 @@ set dictionary=/usr/share/dict/words
 
 " neco-ghc
 " Show detailed information (type) about symbols
-let g:necoghc_enable_detailed_browse = 1
+" let g:necoghc_enable_detailed_browse = 1
 
 
 " neocomplcache
-let g:neocomplcache_enable_at_startup = 0
+" let g:neocomplcache_enable_at_startup = 0
 
 " <Tab> to select a completion
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 
 " Supertab
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabClosePreviewOnPopupClose = 1
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabClosePreviewOnPopupClose = 1
 
 
 " Tags
