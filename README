@@ -1,11 +1,18 @@
 Cyril's dotfiles
 ----------------
 
+# Clone .dotfiles in your home directory
 cd ~
 git clone https://ccressent@bitbucket.org/ccressent/dotfiles.git .dotfiles
-# init/update all the git submodules
-ln -s .dotfiles/vimrc .vimrc
+
+# Install Vundle
+mkdir -p .dotfiles/vim/bundle
+git clone https://github.com/gmarik/vundle .dotfiles/vim/bundle/vundle
+
+# Create symbolic links as needed
+ln -s ~/.dotfiles/vim ~/.vim
+ln -s ~/.dotfiles/vimrc ~/.vimrc
 ...
 
-+ I could write a script to automatically create symlinks to the configuration files in my ~
-
+# Make Vundle install all the vim plugins
+vim +PluginInstall +qall
