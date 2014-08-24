@@ -3,7 +3,7 @@ Cyril's dotfiles
 
 # Clone .dotfiles in your home directory
 cd ~
-git clone https://ccressent@bitbucket.org/ccressent/dotfiles.git .dotfiles
+git clone https://github.com/ccressent/dotfiles .dotfiles
 
 # Install Vundle
 mkdir -p .dotfiles/vim/bundle
