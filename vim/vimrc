@@ -11,10 +11,20 @@ call vundle#begin()
 " Let Vundle manage itself ; required
 Plugin 'gmarik/vundle'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'mattn/emmet-vim'
+Plugin 'marijnh/tern_for_vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on
@@ -22,55 +32,10 @@ filetype plugin indent on
 " General
 set history=300         " Number of line of history vim should remember
 set autoread            " Automatically reread a file if it has changed
-
-" Press space to clear search highlighting and any message already displayed
-nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
-
-
-" Interface
-set title               " Show title in the console title bar
-set ruler               " Show the current position inside the file
-
-set mouse=a             " The mouse is usable in all modes
-set scrolloff=10        " Keep 10 lines when scrolling
-
-set expandtab           " Expand all tab characters to spaces
-set tabstop=4           " A tab character is 4 spaces
-set shiftwidth=4        " Shift is 4 spaces
-
-set showmatch           " Show matching brackets/parentheses
-
-set incsearch           " Incremental search
-set smartcase           " Search becomes case sensitive only if captials are used
-
-set noerrorbells        " No sound on errors
-set novisualbell        " No flash on errors
-set t_vb=
-
-" Spellchecking
-set spelllang=en
-set dictionary=/usr/share/dict/words
-
-
-" neco-ghc
-" Show detailed information (type) about symbols
-" let g:necoghc_enable_detailed_browse = 1
-
-
-" neocomplcache
-" let g:neocomplcache_enable_at_startup = 0
-
-" <Tab> to select a completion
-" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
-
-" Supertab
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabClosePreviewOnPopupClose = 1
-
-
-" Tags
-set tags=./tags;
+set showcmd             " Show command or size of selection in visual mode
+set nobackup
+set nowritebackup
+set noswapfile
 
 
 " Colors and fonts
@@ -79,26 +44,123 @@ set background=dark
 colorscheme solarized
 
 
-" File backups
-set nobackup
-set nowritebackup
-set noswapfile
+" Interface
+set title               " Show title in the console title bar
+set ruler               " Show the current position inside the file
+set laststatus=2        " Always show the status bar
+
+set mouse=a             " The mouse is usable in all modes
+set scrolloff=10        " Keep 10 lines when scrolling
+
+set expandtab           " Expand all tab characters to spaces
+set tabstop=4           " A tab character is 4 spaces
+set shiftwidth=4        " Shift is 4 spaces
+set colorcolumn=80      " Display a vertical bar at that column
+
+set showmatch           " Show matching brackets/parentheses
+
+set incsearch           " Incremental search
+set ignorecase          " Ignore case when searching
+set smartcase           " Search becomes case sensitive only if capital letters are used
+
+set noerrorbells        " No sound on errors
+set visualbell t_vb=    " No flash on errors
 
 
-" Keymaps
-map <F8> :TagbarToggle<CR>
-map <F9> :make<CR>
+" Spellchecking
+set spelllang=en
+set dictionary=/usr/share/dict/words
+
+
+" Tags
+set tags=./tags;
+
+
+" Press space to clear search highlighting and any message already displayed
+nnoremap <silent> <space> :silent noh<Bar>echo<CR>
+
+
+" Set <Space> as an alternative leader key. This is used instead of directly
+" setting the leader key to <Space> in order for 'showcmd' to display something
+" else than a blank character when <Space> is pressed as the leader key.
+map <space> <leader>
+
+" jk in to leave insert mode
+inoremap <esc> <nop>
+inoremap jk <esc>
+
+" Disable the arrow keys ; use normal mode movements instead!
+noremap <left>  <nop>
+noremap <right> <nop>
+noremap <up>    <nop>
+noremap <down>  <nop>
+
+inoremap <left>  <nop>
+inoremap <right> <nop>
+inoremap <up>    <nop>
+inoremap <down>  <nop>
+
+
+" Fugitive
+nnoremap <leader>gc :Gcommit -v -q<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gbr :Git branch<space>
+nnoremap <leader>gco :Git checkout<space>
+nnoremap <leader>gpull :Gpull<cr>
+nnoremap <leader>gpush :Gpush<cr>
+
+
+" neco-ghc
+" Show detailed information (type) about symbols
+let g:necoghc_enable_detailed_browse = 1
+
+
+" Syntastic options
+" Ignore AngularJS attributes in html files
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
+
+" Unite.vim
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+" Look for files
+nnoremap <leader>p :Unite -start-insert file_rec/async<cr>
+
+" Grep search
+nnoremap <leader>/ :Unite grep:.<cr>
+
+
+" YouCompleteMe
+" Automatically close the preview window. Whether or not the preview is shown
+" in the first place depends on vim's 'completeopt' option.
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_autoclose_preview_window_after_completion=1
+
+" Triggers for autocompletion for languages not configured by default
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 
 if has("autocmd")
-    autocmd FileType c,cpp,sh,pl set autoindent
-    autocmd FileType c,cpp,sh,pl set smartindent
-    autocmd FileType c,cpp,sh,pl set cindent
+    autocmd FileType c,cpp,sh,pl setlocal autoindent
+    autocmd FileType c,cpp,sh,pl setlocal smartindent
+    autocmd FileType c,cpp,sh,pl setlocal cindent
 
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd FileType haskell noremap <F1> :GhcModType<cr>
+    autocmd FileType haskell noremap <F2> :GhcModTypeClear<cr>
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+    autocmd BufWritePost *.hs,*.lhs GhcModCheckAndLintAsync
 
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd FileType python set completeopt=menuone,longest,preview
+    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
+
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType python setlocal completeopt=menuone,longest,preview
+
+    autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+
+    autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
     " For all text files set 'textwidth' to 78 characters
     autocmd FileType text setlocal textwidth=78
