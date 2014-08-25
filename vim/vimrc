@@ -104,6 +104,7 @@ inoremap <down>  <nop>
 
 
 " Fugitive
+nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -v -q<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gd :Gdiff<cr>
