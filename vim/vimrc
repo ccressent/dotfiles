@@ -153,6 +153,8 @@ if has("autocmd")
     autocmd FileType c,cpp,sh,pl setlocal smartindent
     autocmd FileType c,cpp,sh,pl setlocal cindent
 
+    autocmd FileType css,less,sass,scss setlocal shiftwidth=2 tabstop=2
+
     autocmd FileType haskell noremap <F1> :GhcModType<cr>
     autocmd FileType haskell noremap <F2> :GhcModTypeClear<cr>
     autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
