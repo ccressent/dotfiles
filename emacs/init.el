@@ -7,6 +7,7 @@
 	        auto-complete
 	        evil
 	        evil-surround
+		exec-path-from-shell
 		flx-ido
 		flycheck
 		key-chord
@@ -19,6 +20,10 @@
 		solarized-theme))
   (unless (package-installed-p p)
     (package-install p)))
+
+;; set environment variables from the shell, when running in a GUI on OSX
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (column-number-mode t)
 (blink-cursor-mode -1)
