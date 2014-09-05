@@ -22,9 +22,11 @@
     (package-install p)))
 
 ;; set environment variables from the shell, when running in a GUI on OSX
+(require 'exec-path-from-shell)
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+(line-number-mode t)
 (column-number-mode t)
 (blink-cursor-mode -1)
 (scroll-bar-mode -1)
@@ -32,6 +34,12 @@
 
 (setq make-backup-files nil)
 (setq auto-save-default nil)
+
+;; enable y/n answers
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; reload buffers automatically when the underlying file changes
+(global-auto-revert-mode t)
 
 (setq-default fill-column 78)
 (setq-default show-trailing-whitespace t)
@@ -50,6 +58,14 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
 (setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
+
+;; highlight the current line
+(global-hl-line-mode)
+
+(require 'whitespace)
+(setq whitespace-line-column 80)
+(setq whitespace-style '(face tabs empty trailing line-tail))
 
 (require 'auto-complete-config)
 (ac-config-default)
@@ -58,6 +74,7 @@
 (flx-ido-mode t)
 
 (require 'haskell-mode)
+(add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indent-mode)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
