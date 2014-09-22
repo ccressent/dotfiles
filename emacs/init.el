@@ -4,23 +4,24 @@
 (package-initialize)
 
 (dolist (p '(;; core
-                auto-complete
-                evil
-                evil-surround
-                exec-path-from-shell
-                flx-ido
-                flycheck
-                key-chord
-                projectile
+             auto-complete
+             evil
+             evil-surround
+             exec-path-from-shell
+             flx-ido
+             flycheck
+             key-chord
+             projectile
 
-                ;; languages
-                haskell-mode
-                flycheck-haskell
+             ;; languages
+             haskell-mode
+             flycheck-haskell
 
-                lua-mode
+             lua-mode
+             markdown-mode
 
-                ;; themes
-                solarized-theme))
+             ;; themes
+             solarized-theme))
   (unless (package-installed-p p)
     (package-install p)))
 
@@ -56,8 +57,15 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
+;; Automatically delete trailing whitespaces on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (electric-pair-mode t)
+
+;; Powerline
+(require 'powerline)
+(require 'powerline-evil)
+(powerline-center-evil-theme)
 
 ;; make the buffer names unique if needed
 (require 'uniquify)
