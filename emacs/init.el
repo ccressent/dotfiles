@@ -19,6 +19,7 @@
 
              lua-mode
              markdown-mode
+             scss-mode
 
              ;; themes
              solarized-theme))
@@ -113,6 +114,8 @@
 (add-hook 'haskell-mode-hook 'my-ac-haskell-mode)
 
 (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/conf")
 
 (require 'conf/evil)
 (require 'conf/themes)
+(require 'conf-languages)
