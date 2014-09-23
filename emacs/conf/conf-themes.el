@@ -7,4 +7,4 @@
       (load-theme 'solarized-light t)
     (load-theme 'solarized-dark t)))
 
-(provide 'conf/themes)
+(provide 'conf-themes)
