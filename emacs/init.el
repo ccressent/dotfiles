@@ -61,6 +61,8 @@
 ;; Automatically delete trailing whitespaces on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+(setq show-paren-delay 0)
+(show-paren-mode 1)
 (electric-pair-mode t)
 
 ;; Powerline
