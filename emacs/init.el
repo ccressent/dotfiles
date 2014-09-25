@@ -10,6 +10,7 @@
              exec-path-from-shell
              flx-ido
              flycheck
+             helm
              key-chord
              projectile
 
@@ -64,6 +65,21 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 (electric-pair-mode t)
+
+;; Helm
+(require 'helm-config)
+(define-key helm-map (kbd "C-z")   'helm-select-action)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+
+(setq helm-quick-update                 t
+      helm-split-window-in-side-p       t
+      helm-buffers-fuzzy-matching       t
+      helm-move-to-line-cycle-in-source t)
+
+(helm-mode 1)
+(global-set-key (kbd "M-x")     'helm-M-x)
+(global-set-key (kbd "C-x b")   'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;; Powerline
 (require 'powerline)
