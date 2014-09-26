@@ -67,6 +67,7 @@
 (electric-pair-mode t)
 
 ;; Helm
+(require 'helm)
 (require 'helm-config)
 (define-key helm-map (kbd "C-z")   'helm-select-action)
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
@@ -78,6 +79,7 @@
 
 (helm-mode 1)
 (global-set-key (kbd "M-x")     'helm-M-x)
+(global-set-key (kbd "C-h a")   'helm-apropos)
 (global-set-key (kbd "C-x b")   'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
