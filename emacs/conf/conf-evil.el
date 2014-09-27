@@ -1,3 +1,8 @@
+(require 'evil-leader)
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key "p" 'helm-projectile)
+(global-evil-leader-mode)
+
 (setq evil-want-C-u-scroll t)
 (setq evil-emacs-state-cursor  '("red"  box))
 (setq evil-normal-state-cursor '("gray" box))

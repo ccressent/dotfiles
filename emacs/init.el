@@ -6,11 +6,13 @@
 (dolist (p '(;; core
              auto-complete
              evil
+             evil-leader
              evil-surround
              exec-path-from-shell
              flx-ido
              flycheck
              helm
+             helm-projectile
              key-chord
              projectile
 
