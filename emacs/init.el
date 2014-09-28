@@ -90,12 +90,6 @@
 (require 'powerline-evil)
 (powerline-center-evil-theme)
 
-;; make the buffer names unique if needed
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward)
-(setq uniquify-after-kill-buffer-p t)
-(setq uniquify-ignore-buffers-re "^\\*")
-
 ;; highlight the current line
 (global-hl-line-mode)
 
