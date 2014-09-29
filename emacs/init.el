@@ -14,6 +14,7 @@
              helm
              helm-projectile
              key-chord
+             powerline
              projectile
 
              ;; languages
@@ -39,6 +40,7 @@
 (blink-cursor-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -87,7 +89,6 @@
 
 ;; Powerline
 (require 'powerline)
-(require 'powerline-evil)
 (powerline-center-evil-theme)
 
 ;; highlight the current line
