@@ -100,11 +100,7 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
-(ido-mode t)
-(flx-ido-mode t)
-
-;;(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/conf")
+(add-to-list 'load-path (concat user-emacs-directory "conf"))
 
 (require 'conf-evil)
 (require 'conf-themes)
