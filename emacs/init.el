@@ -70,6 +70,9 @@
 (show-paren-mode 1)
 (electric-pair-mode t)
 
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; Helm
 (require 'helm)
 (require 'helm-config)
