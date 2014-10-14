@@ -11,3 +11,7 @@ vim/.netrwhist
 xmonad/xmonad-x86_*
 
 vim/bundle/**
+
+weechat/sec.conf
+weechat/weechat.log
+weechat/logs/**
