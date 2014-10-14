@@ -8,6 +8,6 @@ emacs/auto-save-list
 emacs/elpa
 
 vim/.netrwhist
-xmonad/xmonad-x86_64-linux
+xmonad/xmonad-x86_*
 
 vim/bundle/**
