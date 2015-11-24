@@ -2,4 +2,9 @@
 # in all projects.  For more information about stack's configuration, see
 # https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
 #
-{}
+templates:
+  params:
+    author-name: Cyril Cressent
+    author-email: cyril@cressent.org
+    copyright: 'Copyright: (c) 2015 Cyril Cressent'
+    github-username: ccressent
