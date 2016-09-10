@@ -122,6 +122,10 @@ nnoremap <leader>gpush :Gpush<cr>
 let g:necoghc_enable_detailed_browse = 1
 
 
+" Surround
+" Make / surround a text object with comment marks
+let g:surround_{char2nr('/')} = "/* \r */"
+
 " Syntastic options
 " Ignore AngularJS attributes in html files
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
