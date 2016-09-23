@@ -149,7 +149,6 @@ nnoremap <leader>/ :Unite grep:.<cr>
 " Automatically close the preview window. Whether or not the preview is shown
 " in the first place depends on vim's 'completeopt' option.
 let g:ycm_autoclose_preview_window_after_insertion=1
-let g:ycm_autoclose_preview_window_after_completion=1
 
 " Triggers for autocompletion for languages not configured by default
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
