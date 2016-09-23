@@ -12,7 +12,6 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'fatih/vim-go'
@@ -30,6 +29,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 filetype plugin indent on
@@ -105,6 +106,8 @@ inoremap <right> <nop>
 inoremap <up>    <nop>
 inoremap <down>  <nop>
 
+" Airline
+let g:airline_powerline_fonts = 1
 
 " Fugitive
 nnoremap <leader>ga :Gwrite<cr>
