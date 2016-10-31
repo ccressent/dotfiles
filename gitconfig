@@ -1,9 +1,13 @@
 [user]
-	name = Cyril Cressent
-	email = cyril@cressent.org
+    name = Cyril Cressent
+    email = cyril@cressent.org
 [color]
-	ui = auto
+    ui = auto
 [core]
-	editor = vim
+    editor = vim
 [push]
-	default = simple
+    default = simple
+
+[alias]
+    br = branch
+    co = commit
