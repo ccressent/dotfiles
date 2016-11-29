@@ -170,6 +170,7 @@ if has("autocmd")
 
     autocmd FileType haskell noremap <F1> :GhcModType<cr>
     autocmd FileType haskell noremap <F2> :GhcModTypeClear<cr>
+    autocmd FileType haskell nmap <Leader>i :GhcModInfo<cr>
     autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
     autocmd BufWritePost *.hs,*.lhs GhcModCheckAndLintAsync
 
