@@ -8,10 +8,10 @@ emacs/auto-save-list
 emacs/elpa
 
 vim/.netrwhist
-xmonad/xmonad-x86_*
-
 vim/bundle/**
 
 weechat/sec.conf
 weechat/weechat.log
 weechat/logs/**
+
+xmonad/xmonad-x86_*
