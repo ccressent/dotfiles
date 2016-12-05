@@ -7,6 +7,9 @@ emacs/ac-comphist.dat
 emacs/auto-save-list
 emacs/elpa
 
+tmux/.tmux/plugins/**
+tmux/.tmux/resurrect
+
 vim/.netrwhist
 vim/bundle/**
 

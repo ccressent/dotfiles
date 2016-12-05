@@ -12,5 +12,11 @@
     ln -s ~/.dotfiles/vim ~/.vim
     ln -s ~/.dotfiles/vimrc ~/.vimrc
 
+Move to GNU Stow in progress...
+
 ## Make Vundle install all the vim plugins
     vim +PluginInstall +qall
+
+## Install all the tmux plugins
+
+With the tpm submodule initialized, start tmux and hit `<prefix> + I`
