@@ -294,12 +294,20 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   ;; Set escape keybinding to 'jk'
-  (setq-default evil-escape-key-sequence "jk"))
+  (setq-default evil-escape-key-sequence "jk")
+
+  ;; Name the default layout "All" and always display it in the modeline
+  (setq-default dotspacemacs-default-layout-name "All")
+  (setq-default dotspacemacs-display-default-layout t)
 
   ;; Attempt to use ctrl-n/ctrl-p to select completion
   ;; (global-set-key (kbd "C-p") 'previous-completion)
-  ;; (global-set-key (kbd "\C-n") 'next-completion)
-  ;; (define-key evil-insert-state-map (kbd "\C-n") 'next-completion)
+  ;; (global-set-key (kbd "C-n") 'next-completion)
+  ;; (global-set-key (kbd "C-n") 'company-select-next)
+
+  ;; (define-key evil-insert-state-map (kbd "\M-p") 'next-completion)
+  ;; (define-key ac-completing-map (kbd "C-n") 'ac-next)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
