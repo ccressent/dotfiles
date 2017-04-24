@@ -7,7 +7,9 @@
     editor = vim
 [push]
     default = simple
-
+[status]
+    short  = true
+    branch = true
 [alias]
     br = branch
     co = commit
