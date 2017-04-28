@@ -36,7 +36,8 @@ values."
                       auto-completion-tab-key-behavior 'cycle)
      go
      (haskell :variables
-              haskell-completion-backend 'intero)
+              haskell-completion-backend 'intero
+              haskell-enable-hindent-style "johan-tibell")
      helm
      emacs-lisp
      git
