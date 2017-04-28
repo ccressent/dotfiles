@@ -10,5 +10,6 @@ TODO
 - Solarized dark/light toggle
 - shell "navigation" (next/prev word, ...)
 - shell <C-W> acting like vim?
+- cleanup weechat config
 
 - Write down note about subword mode (emacs)
