@@ -5,6 +5,8 @@
     ui = auto
 [core]
     editor = vim
+[format]
+    pretty = oneline
 [push]
     default = simple
 [status]
