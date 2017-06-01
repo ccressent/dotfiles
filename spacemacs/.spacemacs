@@ -307,6 +307,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Use ctrl-n/ctrl-p to select completion
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
+
+  ;; Add hlint warnings to flycheck
+  ;; Could I do the same things by changing layer variables instead?
+  (with-eval-after-load 'intero
+    (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
