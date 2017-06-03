@@ -312,6 +312,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Could I do the same things by changing layer variables instead?
   (with-eval-after-load 'intero
     (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
+
+  ;; Fix the modeline separators (from Spacemacs installation instructions)
+  (setq powerline-default-separator 'utf-8)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
