@@ -174,10 +174,10 @@ values."
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "Default"
+   dotspacemacs-default-layout-name "All"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
@@ -294,8 +294,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   ;; Name the default layout "All" and always display it in the modeline
-  (setq-default dotspacemacs-default-layout-name "All")
-  (setq-default dotspacemacs-display-default-layout t)
+  ;; (setq-default dotspacemacs-default-layout-name "All")
+  ;; (setq-default dotspacemacs-display-default-layout t)
 )
 
 (defun dotspacemacs/user-config ()
