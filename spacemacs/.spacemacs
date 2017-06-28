@@ -39,10 +39,12 @@ values."
               haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
      helm
+     html
      emacs-lisp
      git
      markdown
      org
+     python
      shell
      syntax-checking
      version-control
