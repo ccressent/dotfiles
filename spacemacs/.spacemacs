@@ -292,10 +292,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
-  ;; Name the default layout "All" and always display it in the modeline
-  ;; (setq-default dotspacemacs-default-layout-name "All")
-  ;; (setq-default dotspacemacs-display-default-layout t)
 )
 
 (defun dotspacemacs/user-config ()
