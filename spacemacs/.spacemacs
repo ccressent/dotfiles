@@ -180,7 +180,7 @@ values."
    dotspacemacs-display-default-layout t
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -312,6 +312,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; Fix the modeline separators (from Spacemacs installation instructions)
   (setq powerline-default-separator 'utf-8)
+
+  ;; Automatically save layouts every 5 minutes
+  (setq layouts-enable-autosave t)
+  (setq layouts-autosave-delay 300)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
