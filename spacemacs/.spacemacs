@@ -34,14 +34,14 @@ values."
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
                       auto-completion-tab-key-behavior 'cycle)
+     emacs-lisp
+     git
      go
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
      helm
      html
-     emacs-lisp
-     git
      markdown
      org
      python
@@ -49,9 +49,6 @@ values."
      syntax-checking
      version-control
      yaml
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
      ;; spell-checking
      )
    ;; List of additional packages that will be installed without being
