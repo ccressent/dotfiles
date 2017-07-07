@@ -9,7 +9,7 @@ myManageHook = composeAll
     [ className =? "Vlc" --> doCenterFloat ]
 
 main :: IO ()
-main = xmonad =<< xmobar defaultConfig
+main = xmonad =<< xmobar def
         {
           modMask = mod4Mask
         , terminal = "urxvt"
