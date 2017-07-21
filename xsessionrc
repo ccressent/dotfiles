@@ -5,7 +5,7 @@ setxkbmap -layout us -variant dvorak-intl -option ctrl:nocaps
 
 # Load the Xresources
 if [ -d $HOME/.dotfiles/Xresources ]; then
-    cat ~/.dotfiles/Xresources/* | xrdb
+    cat ~/.dotfiles/Xresources/* | xrdb -merge
 fi
 
 # Set the background
