@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # Setup the keyboard (under X only)
-setxkbmap -layout dvorak,us -option ctrl:nocaps,grp:sclk_toggle
+setxkbmap -layout us -variant dvorak-intl -option ctrl:nocaps
 
 # Load the Xresources
 if [ -d $HOME/.dotfiles/Xresources ]; then
