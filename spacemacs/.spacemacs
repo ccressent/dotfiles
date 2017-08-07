@@ -42,6 +42,7 @@ values."
               haskell-enable-hindent-style "johan-tibell")
      helm
      html
+     latex
      markdown
      org
      python
