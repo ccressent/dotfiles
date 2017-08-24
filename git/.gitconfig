@@ -6,7 +6,7 @@
 [core]
     editor = vim
 [format]
-    pretty = oneline
+    pretty = format:%C(auto,yellow)%h %C(auto,blue)%<(12,trunc)%ad %C(auto,green)%aN %C(auto,red)%d %C(auto,reset)%s
 [push]
     default = simple
 [status]
