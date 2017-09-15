@@ -316,6 +316,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Automatically save layouts every 5 minutes
   (setq layouts-enable-autosave t)
   (setq layouts-autosave-delay 300)
+
+  (spacemacs/toggle-centered-point-globally-on)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
