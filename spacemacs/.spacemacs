@@ -318,6 +318,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq layouts-autosave-delay 300)
 
   (spacemacs/toggle-centered-point-globally-on)
+
+  (add-hook 'git-commit-mode-hook (lambda () (set-fill-column 72)))
+  (add-hook 'git-commit-mode-hook 'fci-mode)
+  (add-hook 'git-commit-mode-hook 'auto-fill-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
