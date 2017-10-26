@@ -1,4 +1,4 @@
-URxvt.font: xft:Dejavu Sans Mono:size=13
+URxvt.font: xft:Dejavu Sans Mono:size=11
 URxvt.letterSpace: -1
 
 ! Disable the scrollbar
