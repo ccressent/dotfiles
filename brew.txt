@@ -17,11 +17,13 @@
 # git
 # graphviz
 # haskell-stack
+# pgcli
 # python
 # python3
 # stow
 # the_silver_searcher
 # tmux
 # tree
+# watch
 # weechat
 # z
