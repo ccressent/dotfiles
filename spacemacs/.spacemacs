@@ -322,6 +322,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'git-commit-mode-hook (lambda () (set-fill-column 72)))
   (add-hook 'git-commit-mode-hook 'fci-mode)
   (add-hook 'git-commit-mode-hook 'auto-fill-mode)
+
+  (spacemacs/load-theme 'solarized)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
