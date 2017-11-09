@@ -15,8 +15,8 @@ tmux/.tmux/resurrect
 vim/.netrwhist
 vim/bundle/**
 
-weechat/sec.conf
-weechat/weechat.log
-weechat/logs/**
+weechat/.weechat/sec.conf
+weechat/.weechat/weechat.log
+weechat/.weechat/logs/**
 
 xmonad/xmonad-x86_*
