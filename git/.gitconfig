@@ -15,3 +15,5 @@
 [alias]
     br = branch
     co = commit
+[url "git@github.com:"]
+	insteadOf = https://github.com/
