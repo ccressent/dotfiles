@@ -32,6 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      (auto-completion :variables
+                      auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-tab-key-behavior 'cycle)
      emacs-lisp
