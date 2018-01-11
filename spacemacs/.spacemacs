@@ -312,6 +312,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
 
   ;; Fix the modeline separators (from Spacemacs installation instructions)
+  ;; TODO: maybe this should be moved to dotspacemacs/user-init
   (setq powerline-default-separator 'utf-8)
 
   ;; Automatically save layouts every 5 minutes
