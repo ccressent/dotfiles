@@ -1,5 +1,10 @@
+import qualified Data.Map as M
+
 import XMonad
 import XMonad.StackSet (RationalRect(..))
+
+import XMonad.Actions.Search
+import XMonad.Actions.Submap
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -34,7 +39,13 @@ myKeys = [
   ((0, xF86XK_AudioMicMute),     spawn "pactl set-source-mute @DEFAULT_SOURCE@ toggle"),
 
   ((0, xF86XK_MonBrightnessDown), spawn "light -U 5"),
-  ((0, xF86XK_MonBrightnessUp),   spawn "light -A 5")
+  ((0, xF86XK_MonBrightnessUp),   spawn "light -A 5"),
+
+  -- Search "submode"
+  ((modm, xK_slash), submap . M.fromList $
+    [ ((0, xK_g), promptSearchBrowser def "chromium" duckduckgo)
+    , ((0, xK_w), promptSearchBrowser def "chromium" wikipedia)
+    ])
   ] where modm = mod4Mask
 
 myConfig = def
