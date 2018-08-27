@@ -10,7 +10,7 @@ export PLATFORM=$(uname -s)
 
 export PAGER=less
 
-export GOPATH=$HOME/projects/gopath
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 if command -v stack > /dev/null; then
