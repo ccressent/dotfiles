@@ -17,26 +17,27 @@ if command -v stack > /dev/null; then
     PATH=$PATH:`stack path --silent --local-bin`
 fi
 
-
-alias vi='vim'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-
-alias ll='ls -lhA'
+if [ "$PLATFORM" = Linux ]; then
+    alias ls='ls --color=auto'
+fi
 
 if [ "$PLATFORM" = Darwin ]; then
     alias ls='ls -G'
+    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
-    export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
+    [ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
+
+    # z.sh doesn't seem to play nice with prompt_jobs()...
+    # [ -f $(brew --prefix)/etc/profile.d/z.sh ] && . $(brew --prefix)/etc/profile.d/z.sh
 fi
 
-[ -f ~/.bash/prompt ] && . ~/.bash/prompt
-[ -f ~/.bash/fzf ]    && . ~/.bash/fzf
+alias vi='vim'
+alias ll='ls -lhA'
+
+export EDITOR='vim'
 
 ### Bash completion
-[ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
-
-# z.sh doesn't seem to play nice with prompt_jobs()...
-# [ -f $(brew --prefix)/etc/profile.d/z.sh ] && . $(brew --prefix)/etc/profile.d/z.sh
+[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # gitdiffb
 gitdiffb() {
@@ -50,7 +51,8 @@ gitdiffb() {
 }
 
 ### fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /usr/share/fzf/completion.bash ] && . /usr/share/fzf/completion.bash
+[ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
 
 export FZF_DEFAULT_OPTS='
     --color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254
