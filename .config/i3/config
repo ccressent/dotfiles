@@ -103,6 +103,19 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# move workspace to different outputs
+mode "move workspace" {
+    bindsym h move workspace to output left
+    bindsym k move workspace to output up
+    bindsym j move workspace to output down
+    bindsym l move workspace to output right
+    bindsym p move workspace to output primary
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+m mode "move workspace"
+
 # reload the configuration file
 bindsym $mod+q reload
 
