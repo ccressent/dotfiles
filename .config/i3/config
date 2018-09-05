@@ -50,8 +50,8 @@ bindsym $mod+s split toggle
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+o layout stacking
-bindsym $mod+comma layout tabbed
+bindsym $mod+o      layout stacking
+bindsym $mod+comma  layout tabbed
 bindsym $mod+period layout toggle split
 
 # toggle tiling / floating
@@ -111,18 +111,18 @@ bindsym $mod+Shift+q restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym h resize shrink width  10 px or 10 ppt
-        bindsym k resize grow   height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym l resize grow   width  10 px or 10 ppt
+    bindsym h resize shrink width  10 px or 10 ppt
+    bindsym k resize grow   height 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym l resize grow   width  10 px or 10 ppt
 
-        bindsym Left  resize shrink width  10 px or 10 ppt
-        bindsym Down  resize grow   height 10 px or 10 ppt
-        bindsym Up    resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow   width  10 px or 10 ppt
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
