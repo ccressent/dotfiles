@@ -1,6 +1,16 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 (setq org-directory "~/notes/")
+(setq org-default-notes-file (expand-file-name "refile.org" org-directory))
+
+(setq org-capture-templates
+  '(("t" "todo" entry
+     (file+headline "" "Tasks")
+     "* [ ] %?\n%i" :kill-buffer t)
+
+    ("n" "note" entry
+     (file+headline "" "Notes")
+     "* %u %?\n%i" :kill-buffer t)))
 
 (setq org-agenda-files (list org-directory))
 (setq org-refile-targets '((nil . (:maxlevel . 5))
