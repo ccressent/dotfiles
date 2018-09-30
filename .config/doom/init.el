@@ -1,5 +1,4 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
 
 (doom! :feature
       ;debugger          ; FIXME stepping through code, to help you add bugs
@@ -47,7 +46,7 @@
        window-select     ; visually switch windows
 
        :editor
-      ;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
