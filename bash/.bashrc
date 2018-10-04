@@ -33,6 +33,8 @@ fi
 
 alias vi='vim'
 alias ll='ls -lhA'
+alias untar='tar -zxvf'
+alias pubip='curl https://ipinfo.io/ip'
 
 export EDITOR='vim'
 
