@@ -25,7 +25,7 @@
 ;; Allow creation of new nodes when refiling, after confirmation.
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 
-(setq org-agenda-files (list org-directory))
+(setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
 (setq org-agenda-restore-windows-after-quit t)
 
 ;; Number of lines of margin to keep at the top and bottom when moving around.
