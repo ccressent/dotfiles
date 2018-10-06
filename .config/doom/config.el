@@ -17,9 +17,10 @@
 (setq org-refile-targets '((nil . (:maxlevel . 5))
                            (org-agenda-files . (:maxlevel . 5))))
 
-;; Use full outline paths and do not try to complete a path in hierarchical
-;; order: we use fuzzy matching to find the right target.
-(setq org-refile-use-outline-path t
+;; When refiling, use the full org outline paths, prefixed by the file name, and
+;; do not try to complete a path in hierarchical order: we use fuzzy matching to
+;; find the right target.
+(setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 
 ;; Allow creation of new nodes when refiling, after confirmation.
