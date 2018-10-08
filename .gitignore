@@ -2,6 +2,7 @@
 *.hi
 *.o
 *.pyc
+*.elc
 
 .stack-work/
 
