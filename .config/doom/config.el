@@ -29,6 +29,13 @@
 (setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
 (setq org-agenda-restore-windows-after-quit t)
 
+(setq org-agenda-custom-commands
+      '((" " "Agenda"
+         ((agenda "" nil)
+          (tags "REFILE"
+                ((org-agenda-overriding-header "Nodes to refile")
+                 (org-tags-match-list-sublevels t)))))))
+
 ;; Number of lines of margin to keep at the top and bottom when moving around.
 (setq scroll-margin 20)
 
