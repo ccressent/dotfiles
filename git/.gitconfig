@@ -1,6 +1,7 @@
 [user]
     name = Cyril Cressent
     email = cyril@cressent.org
+    signingkey = FCB4F17862A3DE208BC8751BB1206285265CA693
 [color]
     ui = auto
 [core]
