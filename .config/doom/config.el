@@ -41,9 +41,6 @@
 
 (setq magit-repository-directories '(("~/src" . 2)))
 
-;; Enable all of magithub features by default
-(setq +magit-hub-features t)
-
 (map!
   (:leader
     (:prefix "f"
