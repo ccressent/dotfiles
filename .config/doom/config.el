@@ -26,6 +26,15 @@
 ;; Allow creation of new nodes when refiling, after confirmation.
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 
+;; Add an advice to org-refile so that after a refile, all the org buffers get
+;; automatically saved.
+;;
+;; An alternative approach could have been to use org-after-refile-insert-hook,
+;; but while these functions are called after content is added to the refile
+;; target, they are called _before_ the content is removed from the old
+;; location, leaving the source buffer unsaved.
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+
 (setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
 (setq org-agenda-restore-windows-after-quit t)
 
