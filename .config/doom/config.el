@@ -1,5 +1,9 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
+;; Use Ivy's regex-ignore-order completion style everywhere.
+(setq ivy-re-builders-alist
+    '((t . ivy--regex-ignore-order)))
+
 (setq org-directory (expand-file-name "~/notes/"))
 (setq org-default-notes-file (expand-file-name "refile.org" org-directory))
 
