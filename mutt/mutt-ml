@@ -7,3 +7,7 @@ subscribe kernel-mentors
 # NetBSD
 subscribe netbsd-users@netbsd.org
 
+# OpenBSD
+subscribe advocacy@openbsd.org
+subscribe announce@openbsd.org
+subscribe misc@openbsd.org
