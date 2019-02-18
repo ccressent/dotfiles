@@ -53,8 +53,11 @@
 (setq scroll-margin 20)
 
 (setq magit-repository-directories '(("~/src" . 2)))
+(setq projectile-project-search-path '("~/src"))
 
 (map!
   (:leader
     (:prefix "f"
-      :desc "Find file in dotfiles" :n "d" #'+ccressent/find-in-dotfiles)))
+      :desc "Find file in dotfiles" :n "d" #'+ccressent/find-in-dotfiles)
+    (:prefix "p"
+      :desc "Test project" :n "t" #'projectile-test-project)))
