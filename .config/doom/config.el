@@ -4,10 +4,18 @@
 (setq ivy-re-builders-alist
     '((t . ivy--regex-ignore-order)))
 
+;; Variables to figure out
+;; org-tags-column
+;; org-tag-alist
+;; org-persistent-tag-alist and add @home @work?
+;; org-agenda-skip-deadline-prewarning-if-scheduled
+;; org-todo-keywords
+
 (setq org-directory (expand-file-name "~/notes/"))
 (setq org-default-notes-file (expand-file-name "refile.org" org-directory))
 
-(setq org-ellipsis " ⤵")
+(setq org-ellipsis " ⤵"
+      org-hide-emphasis-markers t)
 
 (setq org-capture-templates
   '(("t" "todo" entry
