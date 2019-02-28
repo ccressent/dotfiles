@@ -49,15 +49,11 @@
 ;; location, leaving the source buffer unsaved.
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-(setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
-(setq org-agenda-restore-windows-after-quit t)
-
-(setq org-agenda-custom-commands
-      '((" " "Agenda"
-         ((agenda "" nil)
-          (tags "REFILE"
-                ((org-agenda-overriding-header "Nodes to refile")
-                 (org-tags-match-list-sublevels t)))))))
+;; I'm experimenting with having all my org-agenda related settings in a
+;; literate configuration file. Let's tangle and load that.
+(when (file-newer-than-file-p "agenda.org" "agenda.el")
+  (org-babel-tangle-file "agenda.org"))
+(load-file "agenda.el")
 
 ;; Number of lines of margin to keep at the top and bottom when moving around.
 (setq scroll-margin 20)
