@@ -1,5 +1,7 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
+(setq doom-theme 'doom-solarized-light)
+
 ;; Use Ivy's regex-ignore-order completion style everywhere.
 (setq ivy-re-builders-alist
     '((t . ivy--regex-ignore-order)))
