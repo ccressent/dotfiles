@@ -50,10 +50,15 @@
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
 ;; I'm experimenting with having all my org-agenda related settings in a
-;; literate configuration file. Let's tangle and load that.
-(when (file-newer-than-file-p "agenda.org" "agenda.el")
-  (org-babel-tangle-file "agenda.org"))
-(load-file "agenda.el")
+;; literate configuration file. Let's tangle it whenever needed and load it.
+(let ((org-file (expand-file-name "agenda.org" doom-private-dir))
+      (el-file  (expand-file-name "agenda.el"  doom-private-dir)))
+      (when (file-newer-than-file-p org-file el-file)
+        (message "%s is out of date; re-tangling %s" el-file org-file)
+        (require 'ob-tangle)
+        (org-babel-tangle-file "~/.config/doom/agenda.org")))
+
+(load-file "~/.config/doom/agenda.el")
 
 ;; Number of lines of margin to keep at the top and bottom when moving around.
 (setq scroll-margin 20)
