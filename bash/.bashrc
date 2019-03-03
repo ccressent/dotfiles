@@ -61,6 +61,7 @@ export FZF_DEFAULT_OPTS='
     --color info:254,prompt:37,spinner:108,pointer:235,marker:235
 '
 
+# fd - fuzzy find a directory to cd into
 fd() {
     DIR=`find ${1:-*} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf-tmux` \
         && cd "$DIR"
@@ -105,6 +106,22 @@ ftpane() {
 # fstash - git stash mini-browser with fzf
 # fstash() {
 # }
+
+# docker-start - select a docker container to start
+docker-start() {
+    local cid
+    cid=$(sudo docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+    [ -n "$cid" ] && sudo docker start "$cid"
+}
+
+# docker-stop - select a running docker container to stop
+docker-stop() {
+    local cid
+    cid=$(sudo docker ps | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+    [ -n "$cid" ] && sudo docker stop "$cid"
+}
 
 prompt_jobscount() {
     local njobs=$(jobs -p | wc -l)
