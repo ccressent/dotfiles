@@ -110,7 +110,7 @@ ftpane() {
 # docker-start - select a docker container to start
 docker-start() {
     local cid
-    cid=$(sudo docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+    cid=$(sudo docker ps -a | fzf --header-lines=1 -q "$1" | awk '{print $1}')
 
     [ -n "$cid" ] && sudo docker start "$cid"
 }
@@ -118,7 +118,7 @@ docker-start() {
 # docker-stop - select a running docker container to stop
 docker-stop() {
     local cid
-    cid=$(sudo docker ps | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+    cid=$(sudo docker ps | fzf --header-lines=1 -q "$1" | awk '{print $1}')
 
     [ -n "$cid" ] && sudo docker stop "$cid"
 }
