@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+# Select a tmux(1) session to attach to.
+# If no session name is given, an interactive dmenu(1) is spawned.
+
+if [ -z "${1-}" ]
+then
+    session=$(tmux list-sessions -F \#S | rofi -dmenu -p Session -l 5)
+else
+    session=$1
+fi
+
+tmux attach-session -t $session
