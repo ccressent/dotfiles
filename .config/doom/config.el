@@ -22,7 +22,7 @@
 (setq org-capture-templates
   '(("t" "todo" entry
      (file+headline "" "Tasks")
-     "* [ ] %?\n%i" :kill-buffer t)
+     "* TODO %?\n%i" :kill-buffer t)
 
     ("n" "note" entry
      (file+headline "" "Notes")
