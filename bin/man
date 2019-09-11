@@ -4,11 +4,13 @@ set -eu
 # A wrapper around man(1) that presents a searchable list of available manual
 # pages if no arguments are given. It behaves like the regular man(1) otherwise.
 
-if [ -z "$@" ]
+man=/usr/bin/man
+
+if [ -z "$*" ]
 then
     # Alternatively, we could display pdf man pages using something like:
     # xargs -r man -Tpdf | zathura -
-    man -k . | rofi -dmenu -i | awk '{print $1}' | xargs -r man
+    $man -k . | rofi -dmenu -i | awk '{print $1}' | xargs -r $man
 else
-    man $@
+    $man "$@"
 fi
