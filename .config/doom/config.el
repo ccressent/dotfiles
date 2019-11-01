@@ -72,3 +72,8 @@
       :desc "Find file in dotfiles" :n "d" #'+ccressent/find-in-dotfiles)
     (:prefix "p"
       :desc "Test project" :n "t" #'projectile-test-project)))
+
+;; Make TRAMP respect $PATH on the remote machine
+;; See: https://www.gnu.org/software/tramp/#Configuration
+;; See: https://www.gnu.org/software/tramp/#Remote-programs
+(after! tramp (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
