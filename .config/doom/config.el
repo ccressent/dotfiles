@@ -22,6 +22,14 @@
 (setq org-ellipsis " ⤵"
       org-hide-emphasis-markers t)
 
+;; Display "entities", such as \pi and \alpha, as UTF-8 characters. Similarly,
+;; sub and superscript is displayed nicely, as long as the sub or superscripted
+;; text is enclosed in {}; e.g.: R_{t}, R^{2}.
+;;
+;; The actual buffer content remains ASCII, this is purely for display purposes.
+(setq org-pretty-entities t
+      org-use-sub-superscripts '{})
+
 (setq org-capture-templates
   '(("t" "todo" entry
      (file+headline "" "Tasks")
