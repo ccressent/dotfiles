@@ -77,3 +77,9 @@
 ;; See: https://www.gnu.org/software/tramp/#Configuration
 ;; See: https://www.gnu.org/software/tramp/#Remote-programs
 (after! tramp (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+
+;; The keyfreq package logs the most frequent key presses and functions called
+;; and shows summary statistics when calling keyfreq-show. This data can be
+;; analyzed to further improve key bindings.
+(keyfreq-mode)
+(keyfreq-autosave-mode)
