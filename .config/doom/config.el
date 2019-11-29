@@ -2,6 +2,9 @@
 
 (setq doom-theme 'doom-solarized-light)
 
+;; Use relative line numbers
+(setq display-line-numbers-type 'relative)
+
 ;; Use Ivy's regex-ignore-order completion style everywhere.
 (setq ivy-re-builders-alist
     '((t . ivy--regex-ignore-order)))
