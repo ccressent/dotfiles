@@ -94,3 +94,10 @@
 ;; analyzed to further improve key bindings.
 (keyfreq-mode)
 (keyfreq-autosave-mode)
+
+;; I often try to switch tab/workspace while in a Treemacs buffer.
+(when (and (featurep! :ui workspaces)
+           (featurep! :editor evil +everywhere))
+  (define-key! evil-treemacs-state-map
+    "g t" #'+workspace:switch-next
+    "g T" #'+workspace:switch-previous))
