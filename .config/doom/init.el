@@ -7,6 +7,7 @@
         +childframe)
        (ivy              ; a search engine for love and life
         +fuzzy           ; enable fuzzy search backend for ivy
+        +prescient       ; enable filtering and sorting of ivy searches with the prescient package
         +childframe)
 
        :ui
