@@ -65,7 +65,7 @@
        eval              ; run code, run (also, repls)
        (flycheck         ; tasing you for every semicolon you forget
         +childframe)     ; use childframes for error popups (Emacs 26+ only)
-      ;flyspell          ; tasing you for misspelling mispelling
+       flyspell          ; tasing you for misspelling mispelling
       ;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +devdocs         ; ...on devdocs.io online
@@ -112,7 +112,7 @@
       ;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
       ;nim               ; python + lisp at the speed of c
-      ;nix               ; I hereby declare "nix geht mehr!"
+       nix               ; I hereby declare "nix geht mehr!"
       ;ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
         +attach          ; custom attachment system
@@ -129,7 +129,7 @@
       ;racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-      rust               ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
        sh                ; she sells (ba|z)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
