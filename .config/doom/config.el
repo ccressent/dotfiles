@@ -77,6 +77,10 @@
 (setq magit-repository-directories '(("~/src" . 2)))
 (setq projectile-project-search-path '("~/src"))
 
+;; Always use a commit hash rather than a branch name when generating a link to
+;; a file or a region.
+(setq browse-at-remote-prefer-symbolic nil)
+
 (map!
   (:leader
     (:prefix "f"
