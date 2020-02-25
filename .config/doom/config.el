@@ -86,7 +86,19 @@
     (:prefix "f"
       :desc "Find file in dotfiles" :n "d" #'+ccressent/find-in-dotfiles)
     (:prefix "p"
-      :desc "Test project" :n "t" #'projectile-test-project)))
+      :desc "Test project" :n "t" #'projectile-test-project))
+
+  (:after evil-magit
+    :when (featurep! :ui workspaces)
+    :map magit-status-mode-map
+      :nv "g t" #'+workspace:switch-next
+      :nv "g T" #'+workspace:switch-previous)
+
+  (:after treemacs-evil
+    :when (featurep! :ui workspaces)
+    :map evil-treemacs-state-map
+      "g t" #'+workspace:switch-next
+      "g T" #'+workspace:switch-previous))
 
 ;; Make TRAMP respect $PATH on the remote machine
 ;; See: https://www.gnu.org/software/tramp/#Configuration
@@ -98,10 +110,3 @@
 ;; analyzed to further improve key bindings.
 (keyfreq-mode)
 (keyfreq-autosave-mode)
-
-;; I often try to switch tab/workspace while in a Treemacs buffer.
-(when (and (featurep! :ui workspaces)
-           (featurep! :editor evil +everywhere))
-  (define-key! evil-treemacs-state-map
-    "g t" #'+workspace:switch-next
-    "g T" #'+workspace:switch-previous))
