@@ -5,12 +5,14 @@ source ~/.mutt/mutt-keybinds
 set folder    = ~/mail
 set spoolfile = "+inbox"
 set postponed = "+drafts"
+set trash     = "+trash"
 
-set header_cache     = ~/.mutt_cache/headers 
-set message_cachedir = ~/.mutt_cache/messages
+set header_cache     = ~/.cache/mutt/headers
+set message_cachedir = ~/.cache/mutt/messages
 
 set mailcap_path = ~/.mailcap
 auto_view text/html
+alternative_order text/plain text/enriched text/hmtl
 
 set mail_check = 60     # Check for new mail every minute
 set timeout    = 15     # User input timeout 
