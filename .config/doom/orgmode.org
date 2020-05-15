@@ -76,6 +76,16 @@ One can find a list of all available entities by calling ~org-entities-help~.
       org-use-sub-superscripts '{})
 #+END_SRC
 
+** [[https://orgmode.org/manual/Images.html#Images][Image support]]
+
+The [[help:org-startup-with-inline-images][org-startup-with-inline-images]] variable controls whether images should be
+displayed inline when opening an org-mode file. This can also be toggled on/off
+with [[help:org-toggle-inline-images][org-toggle-inline-images]].
+
+#+BEGIN_SRC emacs-lisp
+(setq org-startup-with-inline-images t)
+#+END_SRC
+
 ** Capturing and refiling
 
 See [[https://orgmode.org/manual/Capture-templates.html][the documentation for capture templates]] and [[https://orgmode.org/manual/Template-expansion.html#Template-expansion][template expansion]].
