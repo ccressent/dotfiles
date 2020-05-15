@@ -1,5 +1,8 @@
 * Literate Configuration - How to use this file?
 ** Tangling and detangling
+:PROPERTIES:
+:header-args: :tangle yes
+:END:
 
 This is a small, dummy function to test if tangling works the way I expect it to
 work.

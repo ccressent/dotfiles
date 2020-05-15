@@ -62,14 +62,8 @@
 
 ;; I'm experimenting with having all my org-agenda related settings in a
 ;; literate configuration file. Let's tangle it whenever needed and load it.
-(let ((org-file (expand-file-name "agenda.org" doom-private-dir))
-      (el-file  (expand-file-name "agenda.el"  doom-private-dir)))
-      (when (file-newer-than-file-p org-file el-file)
-        (message "%s is out of date; re-tangling %s" el-file org-file)
-        (require 'ob-tangle)
-        (org-babel-tangle-file "~/.config/doom/agenda.org")))
-
-(load-file "~/.config/doom/agenda.el")
+(require 'ob-tangle)
+(org-babel-load-file (expand-file-name "agenda.org" doom-private-dir))
 
 ;; Number of lines of margin to keep at the top and bottom when moving around.
 (setq scroll-margin 20)
