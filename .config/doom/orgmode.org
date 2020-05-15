@@ -1,0 +1,185 @@
+* Literate Configuration - How to use this file?
+** Tangling and detangling
+:PROPERTIES:
+:header-args: :tangle yes
+:END:
+
+This is a small, dummy function to test if tangling works the way I expect it to
+work.
+
+#+BEGIN_SRC emacs-lisp
+(defun +ccressent/my-little-function ()
+  (interactive)
+  (message "Hello there!"))
+#+END_SRC
+
+If a source block has the ~:comments link~ header, org-babel will include links
+to the original block and it will then be possible to use ~org-babel-detangle~
+on the generated file to propagate changes back to the original org file.
+
+** Weaving
+
+Weaving is the process of generating a human readable output from a literate
+program. With org-mode files, this is achieved using org-export to export the
+file to various formats.
+
+* Org-mode buffers
+:PROPERTIES:
+:header-args: :tangle yes
+:END:
+
+There are some variables that I still need to figure out, such as:
+- [[help:org-tags-column][org-tag-columns]]
+- [[help:org-tag-alist][org-tag-alist]]
+- [[help:org-todo-keywords][org-todo-keywords]]
+- [[help:org-tag-persistent-alist][org-tag-persistent-alist]]
+
+** Global variables
+
+On all my machines, I store my notes in the ~notes~ folder of my home directory.
+These notes are then synchronized between machines using [[https://syncthing.net/][Syncthing]].
+
+When I capture something with a template that has no explicit target file, I
+want it to go into the ~refile.org~ file: it holds entries I need to properly put
+away somewhere else.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-directory          (expand-file-name "~/notes/")
+      org-default-notes-file (expand-file-name "refile.org" org-directory))
+#+END_SRC
+
+** Appearance
+
+This section describes how things look in an org-mode buffer, even if the
+underlying file is pure text.
+
+When a section of a file is folded, an ellipsis marker is shown an the end of
+the section header.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-ellipsis " ⤵")
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-hide-emphasis-markers t)
+#+END_SRC
+
+Display [[https://orgmode.org/manual/Special-Symbols.html]["entities"]], such as \pi and \alpha, as UTF-8 characters. Similarly,
+sub and superscript is displayed nicely, as long as the sub or super-scripted
+text is enclosed in {}; e.g.: R_{t}, R^{2}.
+
+The actual buffer content remains ASCII, this is purely for display purposes!
+One can find a list of all available entities by calling ~org-entities-help~.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-pretty-entities t
+      org-use-sub-superscripts '{})
+#+END_SRC
+
+** Capturing and refiling
+
+See [[https://orgmode.org/manual/Capture-templates.html][the documentation for capture templates]] and [[https://orgmode.org/manual/Template-expansion.html#Template-expansion][template expansion]].
+This is currently not picked up by Doom? It's probably being overwritten
+somewhere.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-capture-templates
+  '(("t" "todo" entry
+     (file+headline "" "Tasks")
+     "* TODO %?\n%i" :kill-buffer t)
+
+    ("n" "note" entry
+     (file+headline "" "Notes")
+     "* %u %?\n%i" :kill-buffer t)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-refile-targets '((nil . (:maxlevel . 5))
+                           (org-agenda-files . (:maxlevel . 5))))
+
+;; When refiling, use the full org outline paths, prefixed by the file name, and
+;; do not try to complete a path in hierarchical order: we use fuzzy matching to
+;; find the right target.
+(setq org-refile-use-outline-path 'file
+      org-outline-path-complete-in-steps nil)
+
+;; Allow creation of new nodes when refiling, after confirmation.
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+;; Add an advice to org-refile so that after a refile, all the org buffers get
+;; automatically saved.
+;;
+;; An alternative approach could have been to use org-after-refile-insert-hook,
+;; but while these functions are called after content is added to the refile
+;; target, they are called _before_ the content is removed from the old
+;; location, leaving the source buffer unsaved.
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+#+END_SRC
+
+* Agenda
+:PROPERTIES:
+:header-args: :tangle yes
+:END:
+
+** Global variables
+
+With proper, custom agenda views and filtering, it should be fine to just
+include all my org files in the agenda. This hasn't caused my any issues yet.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
+#+END_SRC
+
+Displaying the agenda window might alter the current window configuration. With
+the ~org-agenda-restore-windows-after-quit~ variable set to ~t~, the window
+state will be saved before displaying the agenda and then restored after the
+agenda is exited.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-restore-windows-after-quit t)
+#+END_SRC
+
+In my head, the week starts on Monday and I like to see the current Monday to
+Sunday week in the agenda. ~1~ denotes "Monday" for ~org-agenda-start-on-weekday~.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-start-on-weekday 1
+      org-agenda-span 'week)
+#+END_SRC
+
+** The agenda view
+
+Whenever the agenda displays a single day or if the current day is part of what
+is being displayed, I want to see a time grid detailing that day, spanning from
+8am to 10pm.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-time-grid '((daily today remove-match)
+                             (0800 1000 1200 1400 1600 1800 2000 2200)
+                             "......"
+                             "----------------"))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-custom-commands
+      '((" " "Agenda"
+         ((agenda "" nil)
+          (tags "REFILE"
+                ((org-agenda-overriding-header "Nodes to refile")
+                 (org-tags-match-list-sublevels t)))))))
+#+END_SRC
+
+~org-agenda-compact-blocks~ makes the agenda more compact by removing empty lines
+between sections, week number, ...
+
+#+BEGIN_SRC elisp
+(setq org-agenda-compact-blocks t)
+#+END_SRC
+
+If a task with a deadline has been scheduled, no need to display the deadline
+approaching pre-warning in the agenda view; if I have it scheduled, I should
+take care of it on that day.
+
+#+BEGIN_SRC elisp
+(setq org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
+#+END_SRC
