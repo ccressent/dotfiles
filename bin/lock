@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+# Turn the screen off and lock the machine
+xset dpms force off
+slock "$@"
