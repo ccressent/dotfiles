@@ -11,7 +11,7 @@ export PLATFORM=$(uname -s)
 export PAGER=less
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$HOME/bin:$PATH:$GOPATH/bin
 
 if command -v stack > /dev/null; then
     PATH=$PATH:`stack path --silent --local-bin`
