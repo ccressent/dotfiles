@@ -17,6 +17,10 @@ if command -v stack > /dev/null; then
     PATH=$PATH:`stack path --silent --local-bin`
 fi
 
+if command -v direnv > /dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
 if [ "$PLATFORM" = Linux ]; then
     alias ls='ls --color=auto'
 fi
