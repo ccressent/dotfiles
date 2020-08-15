@@ -48,6 +48,15 @@ away somewhere else.
       org-default-notes-file (expand-file-name "refile.org" org-directory))
 #+END_SRC
 
+I also have a sub-directory where I keep small, self-organizing notes following
+the [[https://en.wikipedia.org/wiki/Zettelkasten][Zettelkasten]] method, managed with the [[https://www.orgroam.com/][org-roam]] package.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-roam-directory     (expand-file-name "zettelkasten" org-directory)
+      org-roam-title-sources '((title headline) alias)
+      org-roam-tag-sources   '(prop all-directories))
+#+END_SRC
+
 ** Appearance
 
 This section describes how things look in an org-mode buffer, even if the

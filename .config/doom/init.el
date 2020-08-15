@@ -136,7 +136,8 @@
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
         +pandoc
-        +present)        ; Emacs for presentations
+        +present         ; Emacs for presentations
+        +roam)           ; org-roam
       ;perl              ; write code no one else can comprehend
       ;php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more
