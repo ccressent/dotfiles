@@ -142,8 +142,11 @@ somewhere.
 
 ** Global variables
 
-With proper, custom agenda views and filtering, it should be fine to just
-include all my org files in the agenda. This hasn't caused my any issues yet.
+With proper custom agenda views and filtering, it should be fine to just include
+all my org files in the agenda. This hasn't caused me any issues yet. This might
+change with my growing ~org-directory/zettelkasten~ sub-directory though. See the
+documentation for ~directory-files-recursively~ to make it ignore some
+directories.
 
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
@@ -167,6 +170,13 @@ Sunday week in the agenda. ~1~ denotes "Monday" for ~org-agenda-start-on-weekday
 #+END_SRC
 
 ** The agenda view
+
+In the agenda view, every single day, even if there are no associated tasks, are
+displayed. This lets me see days I currently have "free".
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-show-all-dates t)
+#+END_SRC
 
 Whenever the agenda displays a single day or if the current day is part of what
 is being displayed, I want to see a time grid detailing that day, spanning from
@@ -195,10 +205,19 @@ between sections, week number, ...
 (setq org-agenda-compact-blocks t)
 #+END_SRC
 
-If a task with a deadline has been scheduled, no need to display the deadline
-approaching pre-warning in the agenda view; if I have it scheduled, I should
-take care of it on that day.
+I want the agenda to warn me about a coming deadline, but if a task with a
+deadline has been scheduled, no need to display the deadline approaching
+pre-warning in the agenda view; if I have it scheduled, I should take care of it
+on that day.
+
+~org-agenda-skip-deadline-if-done~ is rather badly named: it only applies to the
+current day. I set it so that even completed deadlines show on the day they are
+due, as a reminder in case I've accidentally marked the task as done but still
+need to take some action related to it on that day, like submitting something or
+calling someone.
 
 #+BEGIN_SRC elisp
-(setq org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
+(setq org-deadline-warning-days 14
+      org-agenda-skip-deadline-if-done nil
+      org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
 #+END_SRC
