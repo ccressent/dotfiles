@@ -57,6 +57,20 @@ the [[https://en.wikipedia.org/wiki/Zettelkasten][Zettelkasten]] method, managed
       org-roam-tag-sources   '(prop all-directories))
 #+END_SRC
 
+*** Disable ~smartparens~
+
+I don't think automatically inserting the closing parenthesis, brackets, ... is
+that useful when I'm writing text, and it messes with auto-completion when I
+start writing some org-mode objects like ~[[~ and ~[[*~.
+
+According to the author of smartparens, [[https://github.com/Fuco1/smartparens/issues/657][adding the mode to ~sp-ignore-modes-list~
+is the correct approach.]]
+
+#+BEGIN_SRC emacs-lisp
+(after! smartparens
+  (add-to-list 'sp-ignore-modes-list 'org-mode))
+#+END_SRC
+
 ** Appearance
 
 This section describes how things look in an org-mode buffer, even if the
