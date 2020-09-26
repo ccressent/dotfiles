@@ -149,6 +149,40 @@ somewhere.
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 #+END_SRC
 
+** Link Completion
+*** Sensu specific issue/pr completion
+
+Using org-mode's pluggable link completion, I've created functions to complete
+links to Github issues and pull requests for Sensu, leveraging the information
+that [[https://magit.vc/manual/forge/][forge]] fetches.
+
+#+BEGIN_SRC emacs-lisp
+(defun +ccressent/sensu-go-github-issue-pr-complete (&optional _)
+  (let* ((forge-repo (forge-get-repository "https://github.com/sensu/sensu-go"))
+         (forge-issue-url (forge--format forge-repo 'issue-url-format '((?i . "%s"))))
+         (default-directory (oref forge-repo worktree)))
+    (format forge-issue-url
+            (forge-read-topic "Issue/PR"))))
+
+(defun +ccressent/sensu-enterprise-go-github-issue-pr-complete (&optional _)
+  (let* ((forge-repo (forge-get-repository "https://github.com/sensu/sensu-enterprise-go"))
+         (forge-issue-url (forge--format forge-repo 'issue-url-format '((?i . "%s"))))
+         (default-directory (oref forge-repo worktree)))
+    (format forge-issue-url
+            (forge-read-topic "Issue/PR"))))
+#+END_SRC
+
+This could be refactored and generalized to work for pretty much any repository
+that [[https://magit.vc/manual/forge/][forge]] knows about. We then tell org to use these functions to complete
+links of type ~sensu-go~ and ~sensu-enterprise-go~:
+
+#+BEGIN_SRC emacs-lisp
+(org-link-set-parameters "sensu-go"
+                         :complete #'+ccressent/sensu-go-github-issue-pr-complete)
+(org-link-set-parameters "sensu-enterprise-go"
+                         :complete #'+ccressent/sensu-enterprise-go-github-issue-pr-complete)
+ #+END_SRC
+
 * Agenda
 :PROPERTIES:
 :header-args: :tangle yes
