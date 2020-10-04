@@ -209,12 +209,13 @@ agenda is exited.
 (setq org-agenda-restore-windows-after-quit t)
 #+END_SRC
 
-In my head, the week starts on Monday and I like to see the current Monday to
-Sunday week in the agenda. ~1~ denotes "Monday" for ~org-agenda-start-on-weekday~.
+I like my default agenda view to span 7 days, showing the 2 previous days, the
+current day and the next 4 days.
 
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-start-on-weekday 1
-      org-agenda-span 'week)
+(setq org-agenda-start-on-weekday nil
+      org-agenda-span 'week
+      org-agenda-start-day "-2d")
 #+END_SRC
 
 ** The agenda view
