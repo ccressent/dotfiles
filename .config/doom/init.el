@@ -137,6 +137,7 @@
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
+        +gnuplot
         +pandoc
         +present         ; Emacs for presentations
         +roam)           ; org-roam
