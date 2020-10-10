@@ -183,6 +183,22 @@ links of type ~sensu-go~ and ~sensu-enterprise-go~:
                          :complete #'+ccressent/sensu-enterprise-go-github-issue-pr-complete)
  #+END_SRC
 
+** Exporting
+*** HTML
+
+See: [[https://orgmode.org/manual/HTML-Export.html][HTML Export documentation]]
+
+Org can export to various (X)HTML flavors, listed in ~org-html-doctype-alist~. One
+picks a variant with the ~org-html-doctype~ variable. I choose HTML5 and allow the
+exporter to use its new elements, like ~aside~ and ~video~. Note that this is
+probably a bad idea in term of compatibility with older versions of Internet
+Explorer.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-html-doctype "html5"
+      org-html-html5-fancy t)
+#+END_SRC
+
 * Agenda
 :PROPERTIES:
 :header-args: :tangle yes
