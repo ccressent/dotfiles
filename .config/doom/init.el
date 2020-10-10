@@ -94,7 +94,7 @@
         +forge)
       ;make              ; run make tasks from Emacs
       ;pass              ; password manager for nerds
-      ;pdf               ; pdf enhancements
+       pdf               ; pdf enhancements
       ;prodigy           ; FIXME managing external services & code builders
       ;rgb               ; creating color strings
       ;terraform         ; infrastructure as code
@@ -138,6 +138,7 @@
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
         +gnuplot
+        +noter
         +pandoc
         +present         ; Emacs for presentations
         +roam)           ; org-roam
