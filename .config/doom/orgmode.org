@@ -218,6 +218,50 @@ current day and the next 4 days.
       org-agenda-start-day "-2d")
 #+END_SRC
 
+*** org-super-agenda
+
+The [[https://github.com/alphapapa/org-super-agenda][org-super-agenda]] package lets one easily group agenda items into sections.
+The repository is well documented and has quite a [[https://github.com/alphapapa/org-super-agenda/blob/master/examples.org][lot of examples]]!
+
+#+BEGIN_SRC emacs-lisp
+(use-package! org-super-agenda
+    :after org-agenda
+    :config (org-super-agenda-mode))
+#+END_SRC
+
+We define the various groupings through the ~org-super-agenda-groups~ variable:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-super-agenda-groups '((:name none
+                                       :time-grid t)
+                                (:name "High Priority"
+                                       :priority "A")
+                                (:name "Today"
+                                       :scheduled today)
+                                (:name "Due today"
+                                       :deadline today)
+                                (:name "Due soon"
+                                       :deadline future)
+                                (:name "Reschedule"
+                                       :scheduled past)
+                                (:order-multi (1 (:name "Done today"
+                                                  :and (:regexp "State \"DONE\""
+                                                        :log t))
+                                                 (:name "Clocked today"
+                                                        :log t)))
+                                (:name "Waiting"
+                                       :todo ("WAIT" "WAITING")
+                                       :order 98)))
+#+END_SRC
+
+The package is not "evilified" so there are some keymap issues. Setting some of
+the package's keybind maps to ~nil~ serves as a quick fix, but the real fix would
+be to properly redefine the keymaps with vi-like bindings, as needed.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-super-agenda-header-map nil)
+#+END_SRC
+
 ** The agenda view
 
 In the agenda view, every single day, even if there are no associated tasks, are
