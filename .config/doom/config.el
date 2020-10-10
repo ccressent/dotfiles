@@ -17,7 +17,7 @@
 ;; Number of lines of margin to keep at the top and bottom when moving around.
 (setq scroll-margin 20)
 
-(setq magit-repository-directories '(("~/src" . 2)))
+(setq magit-repository-directories '(("~/src" . 2) ("~/.dotfiles")))
 (setq projectile-project-search-path '("~/src"))
 
 ;; Always use a commit hash rather than a branch name when generating a link to
