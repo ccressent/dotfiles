@@ -251,8 +251,11 @@ We define the various groupings through the ~org-super-agenda-groups~ variable:
 (setq org-super-agenda-groups '((:name none
                                        :time-grid t)
                                 (:name "High Priority"
-                                       :priority "A")
-                                (:name "Today"
+                                       :priority "A"
+                                       :tag "bills")
+                                (:name "Work"
+                                       :and (:scheduled today :tag "work"))
+                                (:name "Other"
                                        :scheduled today)
                                 (:name "Due today"
                                        :deadline today)
