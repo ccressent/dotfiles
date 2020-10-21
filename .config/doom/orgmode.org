@@ -199,6 +199,52 @@ Explorer.
       org-html-html5-fancy t)
 #+END_SRC
 
+** Publishing
+
+This section deals with my ~org-publish~ configuration, mainly used to publish
+[[https://cressent.org][cressent.org]].
+
+#+BEGIN_SRC emacs-lisp
+(setq org-publish-project-alist
+      '(
+        ("cressent.org" :components ("cressent.org - org content"
+                                     "cressent.org - static files"))
+
+        ("cressent.org - org content"
+         :base-directory "~/src/ccressent/cressent.org/src"
+         :base-extension "org"
+         :recursive t
+         :publishing-directory "~/src/ccressent/cressent.org/dist"
+         :publishing-function org-html-publish-to-html
+         :headline-levels 4
+
+         :html-head-include-scripts nil
+         :html-head-include-default-style nil)
+
+        ("cressent.org - static files"
+         :base-directory "~/src/ccressent/cressent.org/src"
+         :base-extension "html\\|css\\|js\\|png\\|jpg\\|svg\\|gif\\|pdf\\|woff"
+         :recursive t
+         :publishing-directory "~/src/ccressent/cressent.org/dist"
+         :publishing-function org-publish-attachment)
+      ))
+#+END_SRC
+
+There are a lot of other properties that I have yet to research and play with:
+- ~html-head~
+- ~html-link-home~
+- ~html-link-up~
+- ~html-preamble~
+- ~html-postamble~
+- ~style~
+- ~timestamp~
+
+Note that one can tell Emacs to publish a project directly from the command
+line if needed:
+#+BEGIN_SRC sh
+emacs --eval '(progn (org-publish-project "cressent.org") (kill-emacs))'
+#+END_SRC
+
 * Agenda
 :PROPERTIES:
 :header-args: :tangle yes
