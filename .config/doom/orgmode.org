@@ -199,14 +199,137 @@ Explorer.
       org-html-html5-fancy t)
 #+END_SRC
 
+*** [[https://cressent.org][cressent.org]]
+
+In order to generate the HTML I want for [[https://cressent.org][cressent.org]], I've had to dig quite a
+bit. I make use of filters, a custom export backend and a last pass of HTML
+surgery to remove unwanted ~<div>~ elements. This seems quite heavy handed, but as
+far as I can tell [[https://orgmode.org/manual/Advanced-Export-Configuration.html][from the manual]], this is the preferred approach.
+
+Note that for what I wanted to do with footnotes, filters are enough because
+they don't get access to the right context: a foonote-reference filter only gets
+access to the reference text and it's not possible to access the corresponding
+footnote definition. A footnote reference transcoder that we setup as part of a
+custom backend, on the other hand, has access to enough context to fetch the
+corresponding footnote definition.
+
+First, we define a transcoder for footnote references that appends an ~<aside>~
+element containing the corresponding footnote definition:
+
+#+BEGIN_SRC emacs-lisp :results none
+(defun cressent.org/transcode-footnote-ref (fn-ref _contents info)
+  "Append the footnote definition after its reference, as an <aside> element.
+The org-html-footnote-reference transcoder outputs the html for the reference,
+and we append the definition after its result."
+  (let ((number (org-export-get-footnote-number fn-ref info))
+        (definition (org-export-data
+                     (org-export-get-footnote-definition fn-ref info)
+                     info)))
+  (concat
+   (org-html-footnote-reference fn-ref _contents info)
+   (format "<aside class=\"sidenote\"><sup>%d</sup> %s</aside>"
+           number definition))))
+#+END_SRC
+
+We use that footnote reference transcoder in a custom backend derived from the
+html one. Additionally, we provide a function that can be used as the publish
+function in a project:
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'ox)
+(org-export-define-derived-backend 'cressent.org 'html
+  :translate-alist '((footnote-reference . cressent.org/transcode-footnote-ref)))
+
+(defun org-cressent.org-publish-to-html (plist filename pub-dir)
+  "Publish an org file to HTML suitable for cressent.org.
+
+PLIST is the property list for the given project. FILENAME is the file name of
+the org file to be published. PUB-DIR is the publishing directory."
+  (org-publish-org-to 'cressent.org filename
+                      (concat "." (or (plist-get plist :html-extension)
+                                      org-html-extension
+                                      "html"))
+                      plist
+                      pub-dir))
+#+END_SRC
+
+Since we're only using that ~cressent.org~ backend with org-publish, we don't
+bother creating an org-export menu entry for it, or any of the other user-facing
+facilities that typical backends have.
+
+Lastly, we need to do some HTML surgery to remove unwanted preamble and
+postamble divs that the html backend automatically emits, with no way that I
+could find to make it not do so:
+
+#+BEGIN_SRC emacs-lisp :results none
+(defun cressent.org/filter-final (input backend plist)
+  (with-temp-buffer (sgml-mode)
+    (insert input)
+    (goto-char (point-min))
+
+    (when (search-forward "<div id=\"preamble\"" nil t)
+      (sgml-delete-tag 1))
+
+    (when (search-forward "<div id=\"postamble\"" nil t)
+      (sgml-delete-tag 1))
+
+    (buffer-string)))
+
+;; This should only be done in the context of exporting with the cressent.org
+;; backend instead of globally!
+(setq org-export-filter-final-output-functions '(cressent.org/filter-final))
+#+END_SRC
+
 ** Publishing
 
 This section deals with my ~org-publish~ configuration, mainly used to publish
 [[https://cressent.org][cressent.org]].
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
+(setq cressent.org/page-header '(("en" "
+<header>
+  <div class=\"title\">
+    <h1><a href=\"/\">cressent.org</a></h1>
+    <h2>%t</h2>
+  </div>
+  <nav>
+    <ul>
+      <li><a href=\"/\">Home</a></li>
+      <!-- <li><a href=\"tags\">Tags</a></li> -->
+      <!-- <li><a href=\"feed\">Feed</a></li> -->
+      <li><a href=\"about\">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <header>
+    <h1>%t</h1>
+    <div class=\"article-meta\">
+      <div>
+        <p>published <time datetime=\"%d\">%d</time></p>
+        <p>updated <time datetime=\"%C\">%C</time></p>
+      </div>
+      <div>
+        <!-- Tags will go here -->
+      </div>
+    </div>
+  </header>
+")))
+
+(setq cressent.org/page-footer '(("en" "
+</article>
+
+<footer>
+  <p>
+    Feel free to <a href=\"about\"> get in touch</a>.
+  <p/>
+  <!-- Link to org file source and mention git commit? -->
+</footer>
+")))
+
 (setq org-publish-project-alist
-      '(
+      `(
         ("cressent.org" :components ("cressent.org - org content"
                                      "cressent.org - static files"))
 
@@ -215,11 +338,30 @@ This section deals with my ~org-publish~ configuration, mainly used to publish
          :base-extension "org"
          :recursive t
          :publishing-directory "~/src/ccressent/cressent.org/dist"
-         :publishing-function org-html-publish-to-html
-         :headline-levels 4
+         :publishing-function org-cressent.org-publish-to-html
 
+         :headline-levels 4
+         :html-self-link-headlines t
+
+         ;; We take care of the title in the preamble, so no need to include it
+         ;; again.
+         :with-title nil
+         :with-footnotes t
+         :with-toc t
+         :html-container "section"
+         :section-numbers nil
+
+         :html-metadata-timestamp-format "%Y-%m-%d"
+
+         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/main.css\" />"
          :html-head-include-scripts nil
-         :html-head-include-default-style nil)
+         :html-head-include-default-style nil
+
+         :html-preamble t
+         :html-preamble-format ,cressent.org/page-header
+
+         :html-postamble t
+         :html-postamble-format ,cressent.org/page-footer)
 
         ("cressent.org - static files"
          :base-directory "~/src/ccressent/cressent.org/src"
@@ -229,15 +371,6 @@ This section deals with my ~org-publish~ configuration, mainly used to publish
          :publishing-function org-publish-attachment)
       ))
 #+END_SRC
-
-There are a lot of other properties that I have yet to research and play with:
-- ~html-head~
-- ~html-link-home~
-- ~html-link-up~
-- ~html-preamble~
-- ~html-postamble~
-- ~style~
-- ~timestamp~
 
 Note that one can tell Emacs to publish a project directly from the command
 line if needed:
