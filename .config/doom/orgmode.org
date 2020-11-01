@@ -31,7 +31,6 @@ file to various formats.
 There are some variables that I still need to figure out, such as:
 - [[help:org-tags-column][org-tag-columns]]
 - [[help:org-tag-alist][org-tag-alist]]
-- [[help:org-todo-keywords][org-todo-keywords]]
 - [[help:org-tag-persistent-alist][org-tag-persistent-alist]]
 
 ** Global variables
@@ -69,6 +68,36 @@ is the correct approach.]]
 #+BEGIN_SRC emacs-lisp
 (after! smartparens
   (add-to-list 'sp-ignore-modes-list 'org-mode))
+#+END_SRC
+
+** Workflow, tasks and states
+
+See:
+- [[https://orgmode.org/manual/TODO-Extensions.html][Extended Use of TODO Keywords]]
+
+These are the keyword sequences I use in my workflow. See [[http://doc.norang.ca/org-mode.html#TasksAndStates][this extensive setup]]
+for inspiration.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "WAITING(w@/!)" "HOLD(h@/!)"
+                  "|" "DONE(d!)" "CANCELLED(k@/!)")
+        (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")))
+
+(setq org-todo-keyword-faces '(("[-]"     . +org-todo-active)
+                               ("STARTED" . +org-todo-active)
+                               ("[?]"     . +org-todo-onhold)
+                               ("WAITING" . +org-todo-onhold)
+                               ("HOLD"    . +org-todo-onhold)))
+
+(setq org-use-fast-todo-selection 'expert)
+#+END_SRC
+
+I prefer having any state change timestamps and notes inside a drawer. The
+default drawer is ~LOGBOOK~.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-log-into-drawer t)
 #+END_SRC
 
 ** Appearance
