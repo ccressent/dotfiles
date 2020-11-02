@@ -28,6 +28,9 @@ file to various formats.
 :header-args: :tangle yes
 :END:
 
+This configuration is inspired by:
+- [[http://doc.norang.ca/org-mode.html][Bernt Hansen's org-mode configuration]]
+
 There are some variables that I still need to figure out, such as:
 - [[help:org-tags-column][org-tag-columns]]
 - [[help:org-tag-alist][org-tag-alist]]
@@ -411,7 +414,6 @@ emacs --eval '(progn (org-publish-project "cressent.org") (kill-emacs))'
 :PROPERTIES:
 :header-args: :tangle yes
 :END:
-
 ** Global variables
 
 With proper custom agenda views and filtering, it should be fine to just include
@@ -489,7 +491,7 @@ be to properly redefine the keymaps with vi-like bindings, as needed.
 (setq org-super-agenda-header-map nil)
 #+END_SRC
 
-** The agenda view
+** Weekly and daily agenda
 
 In the agenda view, every single day, even if there are no associated tasks, are
 displayed. This lets me see days I currently have "free".
@@ -541,3 +543,46 @@ calling someone.
       org-agenda-skip-deadline-if-done nil
       org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
 #+END_SRC
+
+** Global TODO list
+
+In this list, I don't want to ignore TODO items that have been scheduled, have
+been given a deadline, or have a timestamp.
+
+I may want to reconsider this later, with the rationale that I'm probably
+already aware of all such items through agenda views and that if I'm using the
+global TODO list, it's probably to discover items that need tackling, and I have
+no need to see what I've currently scheduled.
+
+Similarly, these options can be useful to set for specific files or sub-trees
+only. For example, if I were to mark scheduled appointments with a TODO keyword,
+I probably don't want to see them outside of my agenda anyway.
+
+But as a default, I don't want to ignore anything.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-todo-ignore-deadlines nil
+      org-agenda-todo-ignore-timestamp nil
+      org-agenda-todo-ignore-scheduled nil
+      org-agenda-todo-ignore-with-date nil)
+#+END_SRC
+
+** Stuck projects
+
+As part of my weekly review, I want to be able to see projects that are
+considered to be stuck. The definition of "project" and "stuck" is defined with
+the ~org-stuck-projects~ variable.
+
+As a starting point, I'm defining projects to be the tree below a headline with
+a tag of ~PROJECT~ that is not marked as ~DONE~, ~MAYBE~ or ~IDEA~. A project is said to
+be stuck if it has not next actions defined with the ~NEXT~ keyword.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-stuck-projects
+      '("+PROJECT/-IDEA-MAYBE-DONE"
+        ("NEXT")
+        nil ""))
+#+END_SRC
+
+See:
+- [[https://orgmode.org/manual/Stuck-projects.html][Stuck projects manual page]]
