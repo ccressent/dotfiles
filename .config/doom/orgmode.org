@@ -79,28 +79,25 @@ See:
 - [[https://orgmode.org/manual/TODO-Extensions.html][Extended Use of TODO Keywords]]
 
 These are the keyword sequences I use in my workflow. See [[http://doc.norang.ca/org-mode.html#TasksAndStates][this extensive setup]]
-for inspiration.
+for inspiration. I prefer having any state change timestamps and notes inside a
+drawer. The default drawer is ~LOGBOOK~, which is fine with me.
 
 #+BEGIN_SRC emacs-lisp
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "WAITING(w@/!)" "HOLD(h@/!)"
-                  "|" "DONE(d!)" "CANCELLED(k@/!)")
-        (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")))
+(after! org
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "WAITING(w@/!)" "HOLD(h@/!)"
+                    "|" "DONE(d!)" "CANCELLED(k@/!)")
+          (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)"))
 
-(setq org-todo-keyword-faces '(("[-]"     . +org-todo-active)
-                               ("STARTED" . +org-todo-active)
-                               ("[?]"     . +org-todo-onhold)
-                               ("WAITING" . +org-todo-onhold)
-                               ("HOLD"    . +org-todo-onhold)))
+        org-todo-keyword-faces
+        '(("[-]"     . +org-todo-active)
+          ("STARTED" . +org-todo-active)
+          ("[?]"     . +org-todo-onhold)
+          ("WAITING" . +org-todo-onhold)
+          ("HOLD"    . +org-todo-onhold))
 
-(setq org-use-fast-todo-selection 'expert)
-#+END_SRC
-
-I prefer having any state change timestamps and notes inside a drawer. The
-default drawer is ~LOGBOOK~.
-
-#+BEGIN_SRC emacs-lisp
-(setq org-log-into-drawer t)
+        org-use-fast-todo-selection 'expert
+        org-log-into-drawer t))
 #+END_SRC
 
 ** Appearance
@@ -144,40 +141,40 @@ with [[help:org-toggle-inline-images][org-toggle-inline-images]].
 ** Capturing and refiling
 
 See [[https://orgmode.org/manual/Capture-templates.html][the documentation for capture templates]] and [[https://orgmode.org/manual/Template-expansion.html#Template-expansion][template expansion]].
-This is currently not picked up by Doom? It's probably being overwritten
-somewhere.
+
+When refiling, use the full org outline paths, prefixed by the file name, and do
+not try to complete a path in hierarchical order: we use fuzzy matching to find
+the right target. Also allow the creation of new headlines when refiling, after
+confirmation.
 
 #+BEGIN_SRC emacs-lisp
-(setq org-capture-templates
-  '(("t" "todo" entry
-     (file+headline "" "Tasks")
-     "* TODO %?\n%i" :kill-buffer t)
+(after! org
+  (setq org-capture-templates
+        '(("t" "todo" entry
+           (file+headline "" "Tasks")
+           "* TODO %?\n%i" :kill-buffer t)
 
-    ("n" "note" entry
-     (file+headline "" "Notes")
-     "* %u %?\n%i" :kill-buffer t)))
+          ("n" "note" entry
+           (file+headline "" "Notes")
+           "* %u %?\n%i" :kill-buffer t))
+
+        org-refile-targets '((nil . (:maxlevel . 4))
+                             (org-agenda-files . (:maxlevel . 4)))
+
+        org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil
+        org-refile-allow-creating-parent-nodes 'confirm))
 #+END_SRC
 
+Add an advice to ~org-refile~ so that after a refile, all the org buffers get
+automatically saved.
+
+An alternative approach could have been to use org-after-refile-insert-hook, but
+while these functions are called after content is added to the refile target,
+they are called /before/ the content is removed from the old location, leaving the
+source buffer unsaved.
+
 #+BEGIN_SRC emacs-lisp
-(setq org-refile-targets '((nil . (:maxlevel . 5))
-                           (org-agenda-files . (:maxlevel . 5))))
-
-;; When refiling, use the full org outline paths, prefixed by the file name, and
-;; do not try to complete a path in hierarchical order: we use fuzzy matching to
-;; find the right target.
-(setq org-refile-use-outline-path 'file
-      org-outline-path-complete-in-steps nil)
-
-;; Allow creation of new nodes when refiling, after confirmation.
-(setq org-refile-allow-creating-parent-nodes 'confirm)
-
-;; Add an advice to org-refile so that after a refile, all the org buffers get
-;; automatically saved.
-;;
-;; An alternative approach could have been to use org-after-refile-insert-hook,
-;; but while these functions are called after content is added to the refile
-;; target, they are called _before_ the content is removed from the old
-;; location, leaving the source buffer unsaved.
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 #+END_SRC
 
@@ -439,9 +436,10 @@ I like my default agenda view to span 7 days, showing the 2 previous days, the
 current day and the next 4 days.
 
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-start-on-weekday nil
-      org-agenda-span 'week
-      org-agenda-start-day "-2d")
+(after! org
+  (setq org-agenda-start-on-weekday nil
+        org-agenda-span 'week
+        org-agenda-start-day "-2d"))
 #+END_SRC
 
 *** org-super-agenda
