@@ -580,7 +580,12 @@ be stuck if it has not next actions defined with the ~NEXT~ keyword.
       '("+PROJECT/-IDEA-MAYBE-DONE"
         ("NEXT")
         nil ""))
+
+(add-to-list 'org-tags-exclude-from-inheritance "PROJECT")
 #+END_SRC
+
+Note that I had to make ~PROJECT~ a non-heritable tag so that subtrees of a
+project wouldn't be considered projects themselves.
 
 See:
 - [[https://orgmode.org/manual/Stuck-projects.html][Stuck projects manual page]]
