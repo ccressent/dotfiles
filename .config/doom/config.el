@@ -2,6 +2,8 @@
 
 (setq doom-theme 'doom-solarized-light)
 
+(setq doom-localleader-key ",")
+
 ;; Use relative line numbers
 (setq display-line-numbers-type 'relative)
 
