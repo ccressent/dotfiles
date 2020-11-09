@@ -212,6 +212,32 @@ links of type ~sensu-go~ and ~sensu-enterprise-go~:
                          :complete #'+ccressent/sensu-enterprise-go-github-issue-pr-complete)
  #+END_SRC
 
+Lastly, I want the new link's description to have a sane default value. In the
+case of those links, the title and number of the issue/PR is a good default. The
+following code is inspired by [[https://orgmode.org/list/m24kquwxm6.fsf@gmail.com/][this org-mode mailing list message]].
+
+#+BEGIN_SRC emacs-lisp
+;; TODO: better handle cases where forge repo and topic can't be found
+(defun +ccressent/get-forge-topic-description (url)
+  "Return a description for a topic based on its URL. Only Github URLs to issues
+  and pull-requests are supported."
+  (pcase-let* ((`(,scheme ,host ,owner ,repo ,type ,number) (split-string url "/" t))
+               (repo-url (format "%s//%s/%s/%s" scheme host owner repo))
+               (forge-repo (forge-get-repository repo-url))
+               (topic-number (forge--topic-string-to-number number))
+               (default-directory (oref forge-repo worktree))
+               (topic (forge-get-topic topic-number)))
+    (format "%s/%s#%d%s" owner repo topic-number
+            (if topic (format " - %s" (oref topic title)) ""))))
+
+(defun +ccressent/org-link-make-description-function (link desc)
+  (cond ((string-match "\\(github.com\\).*\\(issues\\|pull\\)" link)
+         (+ccressent/get-forge-topic-description link))
+        (t desc)))
+
+(setq org-link-make-description-function '+ccressent/org-link-make-description-function)
+#+END_SRC
+
 ** Exporting
 *** HTML
 
