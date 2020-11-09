@@ -314,7 +314,8 @@ facilities that typical backends have.
 
 Lastly, we need to do some HTML surgery to remove unwanted preamble and
 postamble divs that the html backend automatically emits, with no way that I
-could find to make it not do so:
+could find to make it not do so, and to change the main content div to better
+match the CSS I am working with:
 
 #+BEGIN_SRC emacs-lisp :results none
 (defun cressent.org/filter-final (input backend plist)
@@ -324,6 +325,9 @@ could find to make it not do so:
 
     (when (search-forward "<div id=\"preamble\"" nil t)
       (sgml-delete-tag 1))
+
+    (when (search-forward "<div id=\"content\"" nil t)
+      (replace-match "<div class=\"content\""))
 
     (when (search-forward "<div id=\"postamble\"" nil t)
       (sgml-delete-tag 1))
