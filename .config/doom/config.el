@@ -22,6 +22,10 @@
 (setq magit-repository-directories '(("~/src" . 2) ("~/.dotfiles")))
 (setq projectile-project-search-path '("~/src"))
 
+;; Display additional forge sections in the magit status buffer
+(add-to-list 'magit-status-sections-hook 'forge-insert-requested-reviews t)
+(add-to-list 'magit-status-sections-hook 'forge-insert-assigned-issues t)
+
 ;; Always use a commit hash rather than a branch name when generating a link to
 ;; a file or a region.
 (setq browse-at-remote-prefer-symbolic nil)
