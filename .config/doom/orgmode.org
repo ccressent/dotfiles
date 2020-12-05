@@ -494,6 +494,8 @@ We define the various groupings through the ~org-super-agenda-groups~ variable:
                                        :tag "bills")
                                 (:name "Work"
                                        :and (:scheduled today :tag "work"))
+                                (:name "Sports"
+                                       :and (:scheduled today :tag "sports"))
                                 (:name "Other"
                                        :scheduled today)
                                 (:name "Due today"
