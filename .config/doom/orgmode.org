@@ -55,6 +55,7 @@ the [[https://en.wikipedia.org/wiki/Zettelkasten][Zettelkasten]] method, managed
 
 #+BEGIN_SRC emacs-lisp
 (setq org-roam-directory     (expand-file-name "zettelkasten" org-directory)
+      org-roam-db-location   (expand-file-name "org-roam.db" org-roam-directory)
       org-roam-title-sources '((title headline) alias)
       org-roam-tag-sources   '(prop all-directories))
 #+END_SRC
