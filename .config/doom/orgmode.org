@@ -606,7 +606,7 @@ the ~org-stuck-projects~ variable.
 
 As a starting point, I'm defining projects to be the tree below a headline with
 a tag of ~PROJECT~ that is not marked as ~DONE~, ~MAYBE~ or ~IDEA~. A project is said to
-be stuck if it has not next actions defined with the ~NEXT~ keyword.
+be stuck if it has no next actions defined with the ~NEXT~ keyword.
 
 #+BEGIN_SRC emacs-lisp
 (setq org-stuck-projects
