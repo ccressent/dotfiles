@@ -2,8 +2,19 @@
 # definitions above
 config.load_autoconfig()
 
+c.auto_save.session = True
+
+c.completion.height = "25%"
+c.completion.quick = True
 c.completion.shrink = True
 c.completion.use_best_match = True
+
+# Time (in ms) to wait before removing finished downloads
+c.downloads.remove_finished = 30000
+
+c.input.partial_timeout = 0
+
+c.tabs.background = True
 
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -16,7 +27,6 @@ c.url.searchengines = {
     "yt":      "https://youtube.com/results?search_query={}",
 
     "def":     "https://merriam-webster.com/dictionary/{}",
-    "poe":     "https://pathofexile.gamepedia.com/index.php?search={}",
 
     "arch":    "https://wiki.archlinux.org/index.php?search={}"
 }
@@ -25,5 +35,7 @@ c.bindings.commands["normal"] = {
     "T": "set-cmd-text -s :buffer",
 
     "gt": "tab-next",
-    "gT": "tab-prev"
+    "gT": "tab-prev",
+    "<<": "tab-move -",
+    ">>": "tab-move +"
 }
