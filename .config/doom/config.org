@@ -1,8 +1,5 @@
 * Literate Configuration - How to use this file?
 ** Tangling and detangling
-:PROPERTIES:
-:header-args: :tangle yes
-:END:
 
 This is a small, dummy function to test if tangling works the way I expect it to
 work.
@@ -23,10 +20,85 @@ Weaving is the process of generating a human readable output from a literate
 program. With org-mode files, this is achieved using org-export to export the
 file to various formats.
 
+* From my non-literate configuration
+
+This is a straight "import" of what was left in my ~config.el~. I need to clean it
+up and organize it appropriately in this file.
+
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-solarized-light)
+
+(setq doom-localleader-key ",")
+
+;; Use relative line numbers
+(setq display-line-numbers-type 'relative)
+
+;; Use Ivy's regex-ignore-order completion style everywhere.
+(setq ivy-re-builders-alist
+    '((t . ivy--regex-ignore-order)))
+
+;; I'm experimenting with having all my org-mode and org-agenda related settings
+;; in a literate configuration file. Let's tangle it and load it.
+
+;; There is some load order problem and I've only managed to fix it by setting
+;; these variables here
+;; (setq org-roam-directory     (expand-file-name "zettelkasten" org-directory)
+      ;; org-roam-db-location   (expand-file-name "org-roam.db" org-roam-directory))
+
+;; (require 'ob-tangle)
+;; (org-babel-load-file (expand-file-name "orgmode.org" doom-private-dir))
+
+;; Number of lines of margin to keep at the top and bottom when moving around.
+(setq scroll-margin 20)
+
+(setq magit-repository-directories '(("~/src" . 2) ("~/.dotfiles")))
+(setq projectile-project-search-path '("~/src"))
+
+;; Display additional forge sections in the magit status buffer
+(after! magit
+  (add-to-list 'magit-status-sections-hook 'forge-insert-requested-reviews t)
+  (add-to-list 'magit-status-sections-hook 'forge-insert-assigned-issues t))
+
+;; Always use a commit hash rather than a branch name when generating a link to
+;; a file or a region.
+(setq browse-at-remote-prefer-symbolic nil)
+
+(map!
+  (:leader
+    (:prefix "f"
+      :desc "Find file in dotfiles" :n "d" #'+ccressent/find-in-dotfiles)
+    (:prefix "p"
+      :desc "Test project" :n "t" #'projectile-test-project))
+
+  (:after evil-magit
+    :when (featurep! :ui workspaces)
+    ;; Ideally I should change magit-mode-map to that my bindings are added to
+    ;; all the derived magit modes. I think the issue is that some of these
+    ;; magit mode specific maps already define a g prefix and override their
+    ;; parent map.
+    :map magit-status-mode-map
+      :nv "g t" #'+workspace:switch-next
+      :nv "g T" #'+workspace:switch-previous)
+
+  (:after treemacs-evil
+    :when (featurep! :ui workspaces)
+    :map evil-treemacs-state-map
+      "g t" #'+workspace:switch-next
+      "g T" #'+workspace:switch-previous))
+
+;; Make TRAMP respect $PATH on the remote machine
+;; See: https://www.gnu.org/software/tramp/#Configuration
+;; See: https://www.gnu.org/software/tramp/#Remote-programs
+(after! tramp (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+
+;; The keyfreq package logs the most frequent key presses and functions called
+;; and shows summary statistics when calling keyfreq-show. This data can be
+;; analyzed to further improve key bindings.
+(keyfreq-mode)
+(keyfreq-autosave-mode)
+#+END_SRC
+
 * Org-mode buffers
-:PROPERTIES:
-:header-args: :tangle yes
-:END:
 
 This configuration is inspired by:
 - [[http://doc.norang.ca/org-mode.html][Bernt Hansen's org-mode configuration]]
@@ -207,10 +279,11 @@ that [[https://magit.vc/manual/forge/][forge]] knows about. We then tell org to 
 links of type ~sensu-go~ and ~sensu-enterprise-go~:
 
 #+BEGIN_SRC emacs-lisp
-(org-link-set-parameters "sensu-go"
-                         :complete #'+ccressent/sensu-go-github-issue-pr-complete)
-(org-link-set-parameters "sensu-enterprise-go"
-                         :complete #'+ccressent/sensu-enterprise-go-github-issue-pr-complete)
+(after! org
+  (org-link-set-parameters "sensu-go"
+                           :complete #'+ccressent/sensu-go-github-issue-pr-complete)
+  (org-link-set-parameters "sensu-enterprise-go"
+                           :complete #'+ccressent/sensu-enterprise-go-github-issue-pr-complete))
  #+END_SRC
 
 Lastly, I want the new link's description to have a sane default value. In the
@@ -433,15 +506,9 @@ This section deals with my ~org-publish~ configuration, mainly used to publish
 #+END_SRC
 
 Note that one can tell Emacs to publish a project directly from the command
-line if needed:
-#+BEGIN_SRC sh
-emacs --eval '(progn (org-publish-project "cressent.org") (kill-emacs))'
-#+END_SRC
+line if needed.
 
 * Agenda
-:PROPERTIES:
-:header-args: :tangle yes
-:END:
 ** Global variables
 
 With proper custom agenda views and filtering, it should be fine to just include
