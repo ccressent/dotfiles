@@ -37,5 +37,8 @@ c.bindings.commands["normal"] = {
     "gt": "tab-next",
     "gT": "tab-prev",
     "<<": "tab-move -",
-    ">>": "tab-move +"
+    ">>": "tab-move +",
+
+    ",m": "hint links spawn umpv {hint-url}",
+    ",M": "hint --rapid links spawn umpv {hint-url}"
 }
