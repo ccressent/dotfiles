@@ -13,6 +13,12 @@
 
 ;; I'm experimenting with having all my org-mode and org-agenda related settings
 ;; in a literate configuration file. Let's tangle it and load it.
+
+;; There is some load order problem and I've only managed to fix it by setting
+;; these variables here
+(setq org-roam-directory     (expand-file-name "zettelkasten" org-directory)
+      org-roam-db-location   (expand-file-name "org-roam.db" org-roam-directory))
+
 (require 'ob-tangle)
 (org-babel-load-file (expand-file-name "orgmode.org" doom-private-dir))
 
