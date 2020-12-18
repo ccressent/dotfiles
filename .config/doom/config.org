@@ -20,6 +20,19 @@ Weaving is the process of generating a human readable output from a literate
 program. With org-mode files, this is achieved using org-export to export the
 file to various formats.
 
+* Introduction
+
+This is inspired by various other literate Emacs configurations shared by other
+people online. I won't elaborate here on the why of Emacs and the how of
+literate programming; others elsewhere have done a far better job at this than I
+ever will. Among them:
+
+- [[https://tecosaur.github.io/emacs-config/][Tecosaur's Doom Emacs Configuration]]
+
+Though parts of this configuration may be slight hacks, I hope you find
+something useful to your own setup and workflow. If you have suggestions to
+improve my configuration, please do get in touch!
+
 * From my non-literate configuration
 
 This is a straight "import" of what was left in my ~config.el~. I need to clean it
