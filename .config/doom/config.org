@@ -43,26 +43,9 @@ up and organize it appropriately in this file.
 
 (setq doom-localleader-key ",")
 
-;; Use relative line numbers
-(setq display-line-numbers-type 'relative)
-
 ;; Use Ivy's regex-ignore-order completion style everywhere.
 (setq ivy-re-builders-alist
-    '((t . ivy--regex-ignore-order)))
-
-;; I'm experimenting with having all my org-mode and org-agenda related settings
-;; in a literate configuration file. Let's tangle it and load it.
-
-;; There is some load order problem and I've only managed to fix it by setting
-;; these variables here
-;; (setq org-roam-directory     (expand-file-name "zettelkasten" org-directory)
-      ;; org-roam-db-location   (expand-file-name "org-roam.db" org-roam-directory))
-
-;; (require 'ob-tangle)
-;; (org-babel-load-file (expand-file-name "orgmode.org" doom-private-dir))
-
-;; Number of lines of margin to keep at the top and bottom when moving around.
-(setq scroll-margin 20)
+      '((t . ivy--regex-ignore-order)))
 
 (setq magit-repository-directories '(("~/src" . 2) ("~/.dotfiles")))
 (setq projectile-project-search-path '("~/src"))
@@ -109,6 +92,54 @@ up and organize it appropriately in this file.
 ;; analyzed to further improve key bindings.
 (keyfreq-mode)
 (keyfreq-autosave-mode)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+;; Stretch the cursor to match the width of the glyph it is on.
+(setq x-stretch-cursor t)
+
+;; Allow CamelCasedWords to be treated as multiple words.
+(global-subword-mode 1)
+#+END_SRC
+
+* General
+** Windows
+
+What we usually call a window is called a /frame/ in Emacs. Windows here refer to
+the splits within a frame.
+
+I like new windows to be predictably opened to the right or below the current
+window, and for windows to proportionally share the frame's space whenever one
+is added or removed. Rather than having new windows view the same buffer as the
+currently selected window, ~ivy~ asks me which buffer to view.
+
+#+BEGIN_SRC emacs-lisp
+;; Take space from all windows when resizing. That mostly means keeping
+;; proportional sizes between all windows, especially after closing one.
+(setq window-combination-resize t)
+
+;; Create vertical windows to the right and horizontal windows below.
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+;; Pull up ivy to pick a workspace buffer whenever we create a window.
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (+ivy/switch-workspace-buffer))
+
+;; Show preview when switching buffer
+(setq +ivy-buffer-preview t)
+#+END_SRC
+
+My windows use relative line numbers, which help me quickly jump to surrounding
+lines from my current position, and they keep a margin at the top and bottom.
+
+#+BEGIN_SRC emacs-lisp
+;; Use relative line numbers
+(setq display-line-numbers-type 'relative)
+
+;; Number of lines of margin to keep at the top and bottom when moving around.
+(setq scroll-margin 20)
 #+END_SRC
 
 * Org-mode buffers
