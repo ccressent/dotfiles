@@ -110,6 +110,13 @@ There are some variables that I still need to figure out, such as:
 
 ** Global variables
 
+This is me:
+
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Cyril Cressent"
+      user-mail-address "cyril@cressent.org")
+#+END_SRC
+
 On all my machines, I store my notes in the ~notes~ folder of my home directory.
 These notes are then synchronized between machines using [[https://syncthing.net/][Syncthing]].
 
