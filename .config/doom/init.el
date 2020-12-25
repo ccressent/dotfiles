@@ -7,13 +7,6 @@
 ;;      documentation. There you'll find information about all of Doom's modules
 ;;      and what flags they support.
 
-;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or
-;;      'C-c g k' for non-vim users) to view its documentation. This works on
-;;      flags as well (those symbols that start with a plus).
-;;
-;;      Alternatively, press 'gd' (or 'C-c g d') on a module to browse its
-;;      directory (for easy access to its source code).
-
 (doom!
        :completion
        (company          ; the ultimate code completion backend
@@ -36,7 +29,6 @@
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-      ;pretty-code       ; replace bits of code with pretty symbols
       ;tabs              ; a tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
       ;unicode           ; extended unicode support for various languages
@@ -152,7 +144,7 @@
       ;racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
        sh                ; she sells (ba|z)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
@@ -180,7 +172,6 @@
        literate
 
        ;; The default module set reasonable defaults for Emacs. It also provides
-       ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
-       ;; and additional ex commands for evil-mode. Use it as a reference for
-       ;; your own modules.
-       (default +bindings +snippets +evil-commands +smartparens))
+       ;; a Spacemacs-inspired keybinding scheme. Use it as a reference for your
+       ;; own modules.
+       (default +bindings +smartparens))
