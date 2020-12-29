@@ -149,6 +149,16 @@ and light variant depending on the current lighting conditions.
 (setq doom-theme 'doom-solarized-light)
 #+END_SRC
 
+** Fonts
+
+I have been using DejaVu for a long time, but I'm currently giving Fira Code a
+try. Doom can derives other fonts such as ~doom-big-font~ automatically based off
+~doom-font~, so we only explicitly set that.
+
+#+BEGIN_SRC emacs-lisp
+(setq doom-font (font-spec :family "Fira Code" :size 13))
+#+END_SRC
+
 * Org-mode buffers
 
 This configuration is inspired by:
