@@ -175,6 +175,34 @@ that in the modeline. Only display a file's encoding if it's not ~LF UTF-8~.
 (add-hook 'after-change-major-mode-hook #'+ccressent/doom-modeline-ignore-lf-utf8)
 #+END_SRC
 
+* A Zettelkasten with ~org-roam~
+** ~org-roam-server~
+
+~org-roam-server~ is a web application to help visualize the ~org-roam~ database. It
+uses the ~org-roam~ protocol to make clicks on nodes in the web application open
+the corresponding file in Emacs.
+
+#+BEGIN_SRC emacs-lisp
+(use-package! org-roam-server
+  :after (org-roam)
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 3137
+        org-roam-server-export-inline-images t
+        org-roam-server-authenticate nil
+        org-roam-server-label-truncate t
+        org-roam-server-label-truncate-length 60
+        org-roam-server-label-wrap-length 20)
+  (defun org-roam-server-open ()
+    "Make sure the org-roam server is running then open the roam graph."
+    (interactive)
+    (org-roam-server-mode 1)
+    (browse-url-xdg-open (format "http://%s:%d" org-roam-server-host org-roam-server-port)))
+  (map! :leader
+        (:prefix "nr"
+         :desc "Start and open org-roam server" :n "S" #'org-roam-server-open)))
+#+END_SRC
+
 * Org-mode buffers
 
 This configuration is inspired by:
