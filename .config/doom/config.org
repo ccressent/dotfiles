@@ -159,6 +159,22 @@ try. Doom can derives other fonts such as ~doom-big-font~ automatically based of
 (setq doom-font (font-spec :family "Fira Code" :size 13))
 #+END_SRC
 
+** Modeline
+
+~LF UTF-8~ is the default file encoding I expect, so it's not worth displaying
+that in the modeline. Only display a file's encoding if it's not ~LF UTF-8~.
+
+#+BEGIN_SRC emacs-lisp
+(defun +ccressent/doom-modeline-ignore-lf-utf8 ()
+  "I expect the encoding to be LF UTF-8, so only show the file encoding in the
+  modeline if that's not the case."
+  (setq-local doom-modeline-buffer-encoding
+              (unless (or (eq buffer-file-coding-system 'utf-8-unix)
+                          (eq buffer-file-coding-system 'utf-8)))))
+
+(add-hook 'after-change-major-mode-hook #'+ccressent/doom-modeline-ignore-lf-utf8)
+#+END_SRC
+
 * Org-mode buffers
 
 This configuration is inspired by:
