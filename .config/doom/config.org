@@ -39,8 +39,6 @@ This is a straight "import" of what was left in my ~config.el~. I need to clean 
 up and organize it appropriately in this file.
 
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-solarized-light)
-
 (setq doom-localleader-key ",")
 
 ;; Use Ivy's regex-ignore-order completion style everywhere.
@@ -68,7 +66,7 @@ up and organize it appropriately in this file.
 
   (:after evil-magit
     :when (featurep! :ui workspaces)
-    ;; Ideally I should change magit-mode-map to that my bindings are added to
+    ;; Ideally I should change magit-mode-map so that my bindings are added to
     ;; all the derived magit modes. I think the issue is that some of these
     ;; magit mode specific maps already define a g prefix and override their
     ;; parent map.
@@ -140,6 +138,15 @@ lines from my current position, and they keep a margin at the top and bottom.
 
 ;; Number of lines of margin to keep at the top and bottom when moving around.
 (setq scroll-margin 20)
+#+END_SRC
+
+** Theme
+
+I settled on the [[https://ethanschoonover.com/solarized/][Solarized]] colour scheme a long time ago; I use both the dark
+and light variant depending on the current lighting conditions.
+
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-solarized-light)
 #+END_SRC
 
 * Org-mode buffers
