@@ -175,6 +175,25 @@ that in the modeline. Only display a file's encoding if it's not ~LF UTF-8~.
 (add-hook 'after-change-major-mode-hook #'+ccressent/doom-modeline-ignore-lf-utf8)
 #+END_SRC
 
+* Completion
+
+We use ~company~ for completion and make it show quick completion numbers for the
+first 10 candidates; we can quickly select a candidate with ~M-1~ through ~M-0~.
+
+#+BEGIN_SRC emacs-lisp
+(after! company
+  (setq company-show-numbers t))
+#+END_SRC
+
+* Ivy
+
+While is an ~ivy~ mini-buffer, ~C-o~ can be used to show a list of actions that can
+be taken on the selected item.
+
+#+BEGIN_SRC emacs-lisp
+(setq ivy-read-action-function #'ivy-hydra-read-action)
+#+END_SRC
+
 * A Zettelkasten with ~org-roam~
 ** ~org-roam-server~
 
