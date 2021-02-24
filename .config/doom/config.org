@@ -175,6 +175,17 @@ that in the modeline. Only display a file's encoding if it's not ~LF UTF-8~.
 (add-hook 'after-change-major-mode-hook #'+ccressent/doom-modeline-ignore-lf-utf8)
 #+END_SRC
 
+** Trailing whitespaces
+
+I like to see trailing whitespaces when editing source code and configuration
+files.
+
+#+BEGIN_SRC emacs-lisp
+(add-hook! (conf-mode prog-mode)
+  (defun doom-enable-show-trailing-whitespace-h ()
+    (setq show-trailing-whitespace t)))
+#+END_SRC
+
 * Completion
 
 We use ~company~ for completion and make it show quick completion numbers for the
