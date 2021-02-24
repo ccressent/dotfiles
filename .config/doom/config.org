@@ -187,7 +187,7 @@ first 10 candidates; we can quickly select a candidate with ~M-1~ through ~M-0~.
 
 * Ivy
 
-While is an ~ivy~ mini-buffer, ~C-o~ can be used to show a list of actions that can
+While in an ~ivy~ mini-buffer, ~C-o~ can be used to show a list of actions that can
 be taken on the selected item.
 
 #+BEGIN_SRC emacs-lisp
@@ -691,9 +691,11 @@ We define the various groupings through the ~org-super-agenda-groups~ variable:
                                        :priority "A"
                                        :tag "bills")
                                 (:name "Work"
-                                       :and (:scheduled today :tag "work"))
+                                       :tag "work")
                                 (:name "Sports"
-                                       :and (:scheduled today :tag "sports"))
+                                       :tag "sports")
+                                (:name "Chess"
+                                       :tag "chess")
                                 (:name "Other"
                                        :scheduled today)
                                 (:name "Due today"
