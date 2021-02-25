@@ -786,6 +786,21 @@ calling someone.
       org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
 #+END_SRC
 
+In order to keep clutter down, I don't want to see tasks that were scheduled and
+are now done.
+
+#+BEGIN_SRC elisp
+(setq org-agenda-skip-scheduled-if-done t)
+#+END_SRC
+
+I can always see those items by toggling the agenda's log mode, since I record
+the completion date.
+
+#+BEGIN_SRC elisp
+(setq org-log-done 'time
+      org-log-done-with-time nil)
+#+END_SRC
+
 ** Global TODO list
 
 In this list, I don't want to ignore TODO items that have been scheduled, have
