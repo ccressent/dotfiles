@@ -21,9 +21,6 @@ if command -v direnv > /dev/null; then
     eval "$(direnv hook bash)"
 fi
 
-# Node Version Manager
-source /usr/share/nvm/init-nvm.sh
-
 if [ "$PLATFORM" = Linux ]; then
     alias ls='ls --color=auto'
 fi
