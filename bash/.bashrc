@@ -57,8 +57,16 @@ gitdiffb() {
 }
 
 ### fzf
-[ -f /usr/share/fzf/completion.bash ] && . /usr/share/fzf/completion.bash
-[ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
+
+# With Nix, the path to the relevant files to source is given by fzf-share.
+# With other packages managers, we try the usual path.
+if command -v fzf-share > /dev/null; then
+    . $(fzf-share)/completion.bash
+    . $(fzf-share)/key-bindings.bash
+else
+    [ -f /usr/share/fzf/completion.bash ] && . /usr/share/fzf/completion.bash
+    [ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
+fi
 
 export FZF_DEFAULT_OPTS='
     --color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254
