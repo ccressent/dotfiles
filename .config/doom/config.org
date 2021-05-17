@@ -196,6 +196,15 @@ first 10 candidates; we can quickly select a candidate with ~M-1~ through ~M-0~.
   (setq company-show-numbers t))
 #+END_SRC
 
+** LSP
+
+Only display a warning asking if we should watch a project's files if there are
+more than 5000 of them.
+
+#+BEGIN_SRC emacs-lisp
+(setq lsp-file-watch-threshold 5000)
+#+END_SRC
+
 * Ivy
 
 While in an ~ivy~ mini-buffer, ~C-o~ can be used to show a list of actions that can
