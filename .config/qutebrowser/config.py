@@ -4,6 +4,9 @@ config.load_autoconfig()
 
 c.auto_save.session = True
 
+# Do not autoplay videos
+c.content.autoplay = False
+
 c.completion.height = "25%"
 c.completion.quick = True
 c.completion.shrink = True
