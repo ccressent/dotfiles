@@ -35,7 +35,7 @@ c.url.searchengines = {
 }
 
 c.bindings.commands["normal"] = {
-    "T": "set-cmd-text -s :buffer",
+    "T": "set-cmd-text -s :tab-select",
 
     "gt": "tab-next",
     "gT": "tab-prev",
