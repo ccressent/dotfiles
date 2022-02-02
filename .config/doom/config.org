@@ -157,8 +157,10 @@ try. Doom can derives other fonts such as ~doom-big-font~ automatically based of
 
 #+BEGIN_SRC emacs-lisp
 (setq doom-font (font-spec :family "Fira Code" :size 13))
+;; doom-variable-pitch-font?
 #+END_SRC
 
+*** TODO Ligatures
 ** Modeline
 
 ~LF UTF-8~ is the default file encoding I expect, so it's not worth displaying

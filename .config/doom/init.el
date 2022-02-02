@@ -14,7 +14,7 @@
         +childframe)
        (ivy              ; a search engine for love and life
         +fuzzy           ; enable fuzzy search backend for ivy
-        +prescient       ; enable filtering and sorting of ivy searches with the prescient package
+       ;+prescient       ; enable filtering and sorting of ivy searches with the prescient package
         +childframe)
 
        :ui
@@ -23,6 +23,8 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
+      ;(ligatures
+      ; +extra)
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        ophints           ; highlight the region an operation acts on
@@ -56,6 +58,8 @@
         +ranger)         ; bringing the goodness of ranger to dired
        ;+icons)          ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
+       ;ibuffer          ; interactive buffer management
+       ;undo (+tree)     ; persistent, advanced undos
        vc                ; version-control and Emacs, sitting in a tree
 
        :checkers
@@ -153,6 +157,7 @@
       ;swift             ; who asked for emoji variables?
       ;terra             ; Earth and Moon in alignment for performance.
       ;web               ; the tubes
+      ;yaml
 
        :email
        ;(mu4e +gmail)       ; WIP
