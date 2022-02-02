@@ -15,9 +15,12 @@ c.completion.use_best_match = True
 # Time (in ms) to wait before removing finished downloads
 c.downloads.remove_finished = 30000
 
+c.editor.command = ['emacsclient', '+{line}:{column}', '{file}']
+
 c.input.partial_timeout = 0
 
 c.tabs.background = True
+c.tabs.mousewheel_switching = False
 
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -30,8 +33,10 @@ c.url.searchengines = {
     "yt":      "https://youtube.com/results?search_query={}",
 
     "def":     "https://merriam-webster.com/dictionary/{}",
+    "poe":     "https://www.poewiki.net/w/index.php?search={}",
 
-    "arch":    "https://wiki.archlinux.org/index.php?search={}"
+    "arch":    "https://wiki.archlinux.org/index.php?search={}",
+    "levi":    "https://acportalstorm.com/wiki/index.php?search={}"
 }
 
 c.bindings.commands["normal"] = {
