@@ -139,7 +139,7 @@
         +pandoc
         +present         ; Emacs for presentations
         ; +pretty        ; nice looking bullets and stuff
-        +roam)           ; org-roam
+        +roam2)           ; org-roam
       ;perl              ; write code no one else can comprehend
       ;php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more

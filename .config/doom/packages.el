@@ -1,5 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 
 (package! keyfreq)
-(package! org-roam-server)
+(unpin! org-roam)
+(package! org-roam-ui)
 (package! org-super-agenda)
