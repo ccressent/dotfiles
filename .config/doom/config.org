@@ -677,14 +677,13 @@ agenda is exited.
 (setq org-agenda-restore-windows-after-quit t)
 #+END_SRC
 
-I like my default agenda view to span 7 days, showing the 2 previous days, the
-current day and the next 4 days.
+I like my default agenda view to span 7 days, starting with the current day.
 
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-agenda-start-on-weekday nil
         org-agenda-span 'week
-        org-agenda-start-day "-2d"))
+        org-agenda-start-day "today"))
 #+END_SRC
 
 *** org-super-agenda
