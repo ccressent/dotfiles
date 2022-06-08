@@ -327,12 +327,15 @@ drawer. The default drawer is ~LOGBOOK~, which is fine with me.
 This section describes how things look in an org-mode buffer, even if the
 underlying file is pure text.
 
-When a section of a file is folded, an ellipsis marker is shown an the end of
-the section header.
+Most of the time, I like seeing an overview with 2 or 3 levels of headings when
+I open an org file, keeping the rest folded until I manually peek. When a
+section is folded, an ellipsis marker is shown an the end of the section header.
 
-#+BEGIN_SRC emacs-lisp
-(setq org-ellipsis " ⤵")
-#+END_SRC
+#+begin_src emacs-lisp
+(after! org
+  (setq org-startup-folded 'show2levels
+        org-ellipsis " ⤵"))
+#+end_src
 
 #+BEGIN_SRC emacs-lisp
 (setq org-hide-emphasis-markers t)
