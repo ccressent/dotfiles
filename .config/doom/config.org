@@ -398,7 +398,25 @@ source buffer unsaved.
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 #+END_SRC
 
-** Link Completion
+** Links
+
+I use links in my org files extensively, and I was surprised to not be able to
+find a function to copy the URL for the link at point. I use this to share links
+from my notes with other people.
+
+#+begin_src emacs-lisp
+(defun +ccressent/org-copy-link (&optional arg)
+  "Extract the URL from the org-mode link at point and add it to the kill ring."
+  (interactive "P")
+  (let* ((link (org-element-lineage (org-element-context) '(link) t))
+         (type (org-element-property :type link))
+         (path (org-element-property :path link))
+         (url (concat type ":" path)))
+    (if (and type path)
+        (progn (kill-new url) (message "Copied: %s" url))
+      (message "Couldn't find any org link"))))
+#+end_src
+
 *** Sensu specific issue/pr completion
 
 Using org-mode's pluggable link completion, I've created functions to complete
