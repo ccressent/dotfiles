@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -eu
+
+# Create a new Emacs frame with the magit status of the git repository in the
+# current path. If invoked outside of a git repository, spawn an interactive
+# dmenu(1) to select an existing repository from ~/src.
+
+if ! repository=$(git rev-parse --show-toplevel); then
+    repository=$(find ~/src -mindepth 2 -maxdepth 2 | rofi -dmenu -i)
+fi
+    emacsclient --create-frame --no-wait --eval "(magit-status \"$repository\")"
