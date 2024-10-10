@@ -4,7 +4,7 @@ set -eu
 # A wrapper around man(1) that presents a searchable list of available manual
 # pages if no arguments are given. It behaves like the regular man(1) otherwise.
 
-man=/usr/bin/man
+man=/usr/local/bin/man
 
 if [ -z "$*" ]
 then
